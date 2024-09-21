@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh; /* El body ocupa toda la altura de la ventana */
+}
+
+.menu {
+ 	position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #37474f; /* Fondo más oscuro */
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Sombra sutil para darle profundidad */
+}
+
+.menu h2 {
+	font-family: "Homer Simpson UI";
+    text-align: center;
+    color: #ecf0f1; /* Color blanco para el título */
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #000000; /* Línea decorativa debajo del título */
+    padding-bottom: 10px;
+    padding: 15px 20px;
+}
+
+.menu a {
+	font-family: "Homer Simpson UI";
+    display: block;
+    padding: 15px 20px; /* Más espacio en los enlaces */
+    text-decoration: none;
+    color: #ecf0f1; /* Color blanco para mejor contraste */
+    margin-bottom: 10px;
+    font-size: 18px; /* Tamaño de fuente más grande */
+    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Efecto suave al hacer hover */
+}
+
+.menu a:hover {
+    background-color: #000000; /* Color verde para el hover */
+    padding-left: 30px; /* Efecto de desplazamiento a la derecha */
+    text-decoration: none;
+    color: #ecf0f1;
+}
+
+.content {
+	font-family: "Homer Simpson UI";
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    margin-left: 250px; /* Ajusta el contenido para dejar espacio al menú fijo */
+}
+
+.contentregistro{
+    flex: 1;
+    padding: 15px;
+    margin-left: 250px; /* Ajusta el contenido para dejar espacio al menú fijo */
+}
+
+.contentregistro h2{
+    text-align: center;
+}
+
+ .custom-width {
+        max-width: 30px;
+}
+
+label {
+    font-family: Arial, sans-serif; /* Fuente del texto */
+    font-size: 16px; /* Tamaño del texto */
+    color: #333; /* Color del texto */
+    font-weight: bold; /* Peso del texto (negrita) */
+}

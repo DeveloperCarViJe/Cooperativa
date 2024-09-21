@@ -24,19 +24,30 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- JSTL -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		<dependency>  
+		    <groupId>javax</groupId>    
+		    <artifactId>javaee-web-api</artifactId>    
+		    <version>7.0</version> <!-- Put here the version of your Java EE app, in my case 7.0 -->
+		    <scope>provided</scope>
+		</dependency>
 
         <!-- Other dependencies can be added here -->
         <dependency>
 			 <groupId>com.oracle.database.jdbc</groupId>
 		     <artifactId>ojdbc8</artifactId>
 		     <version>19.8.0.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.zaxxer</groupId>
+		    <artifactId>HikariCP</artifactId>
+		    <version>5.0.1</version>
 		</dependency>
    	 </dependencies>
 

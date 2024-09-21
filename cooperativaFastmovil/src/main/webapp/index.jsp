@@ -3,47 +3,25 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>COOPERATIVA FASTMOVIL</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        .menu {
-            width: 200px;
-            background-color: #f4f4f4;
-            padding: 15px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        }
-        .menu a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        .menu a:hover {
-            background-color: #ddd;
-        }
-        .content {
-            flex: 1;
-            padding: 15px;
-        }
-    </style>
+    <title>COOPERATIVA FAST MOVIL</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Usuario.css">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="menu">
-        <h2>Menú</h2>
-        <a href="FormUsuarios/RegistroUsuarios.jsp">USUARIOS</a>
+        <h2>MENU</h2>
+        <a href="${pageContext.request.contextPath}/FormUsuarios/RegistroUsuarios.jsp">USUARIOS</a>
         <a href="about.jsp">CHOFERES</a>
         <a href="services.jsp">DESTINOS</a>
         <a href="contact.jsp">CARRERAS</a>
     </div>
     <div class="content">
         <!-- Aquí va el contenido de la página -->
-        <h1>Bienvenidos Menu Principal de la Cooperativa FastMovil</h1>
+        <h1>BIENVENIDOS FAST MOVIL - COOPERTATIVA DE TAXI</h1>
+        <img src="Imagenes/Taxi.png" alt="Logotipo de Taxi en la pantalla principal" width="400">
     </div>
 </body>
 </html>

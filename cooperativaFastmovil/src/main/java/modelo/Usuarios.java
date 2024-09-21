@@ -23,7 +23,8 @@ public class Usuarios {
     private String email;
     private String estado;
     private String telefono;
-    private Date fecha_Salida;
+    private Date Fecha_ingreso;
+	private Date fecha_Salida;
 
     // Constructor sin parámetros
     public Usuarios() {
@@ -111,6 +112,14 @@ public class Usuarios {
     public Date getFecha_Salida() {
         return fecha_Salida;
     }
+
+    public Date getFecha_ingreso() {
+		return Fecha_ingreso;
+	}
+
+	public void setFecha_ingreso(Date fecha_ingreso) {
+		Fecha_ingreso = fecha_ingreso;
+	}
 
     public void setFecha_Salida(Date fecha_Salida) {
         this.fecha_Salida = fecha_Salida;

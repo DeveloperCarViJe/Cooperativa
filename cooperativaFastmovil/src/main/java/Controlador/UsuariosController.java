@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.UsuariosDao;
+import DAO.UsuariosDao2;
 import modelo.Usuarios;
 
 /**
@@ -17,6 +18,7 @@ import modelo.Usuarios;
 public class UsuariosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     UsuariosDao dao= new UsuariosDao();
+	//UsuariosDao2 dao= new UsuariosDao2();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -52,10 +54,11 @@ public class UsuariosController extends HttpServlet {
         Usuarios usuarios = new Usuarios(nombres,apellidos,edad,usuario,password,email,estado,telefono,null);
         switch (accion) {        
             case "Registrar":
-                dao.insertarUsuario(usuarios);
-                response.sendRedirect("UsuariosController");
+                boolean registroExitosoFalse = dao.insertarUsuario(usuarios);
+                request.setAttribute("registroExitosoFalse", registroExitosoFalse);
+                request.getRequestDispatcher("FormUsuarios/RegistroUsuarios.jsp").forward(request, response);
                 break;
-                
+  
             default:
                 throw new AssertionError();
         }
