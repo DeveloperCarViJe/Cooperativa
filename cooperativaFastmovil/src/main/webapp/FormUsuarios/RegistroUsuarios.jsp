@@ -68,13 +68,13 @@
 						    </div>
 						</div>
 						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+						  <input class="form-check-input" type="radio" name="flexRadioRol" id="flexRadioRol1" value="ADMINISTRADOR" checked>
 						  <label class="form-check-label" for="flexRadioDefault1">
 						    ADMINISTRADOR
 						  </label>
 						</div>
 						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+						  <input class="form-check-input" type="radio" name="flexRadioRol" id="flexRadioRol2" value="OPERADOR">
 						  <label class="form-check-label" for="flexRadioDefault2">
 						    OPERADOR
 						  </label>

@@ -23,6 +23,7 @@ public class Usuarios {
     private String email;
     private String estado;
     private String telefono;
+    private String rol;
     private Date Fecha_ingreso;
 	private Date fecha_Salida;
 
@@ -31,7 +32,7 @@ public class Usuarios {
     }
 
     // Constructor con todos los parámetros
-    public Usuarios(String nombres, String apellidos, Integer edad, String usuario, String password, String email, String estado, String telefono, Date fecha_Salida) {
+    public Usuarios(String nombres, String apellidos, Integer edad, String usuario, String password, String email, String estado, String telefono, String rol, Date fecha_Salida) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.edad = edad;
@@ -40,6 +41,7 @@ public class Usuarios {
         this.email = email;
         this.estado = estado;
         this.telefono = telefono;
+        this.rol = rol;
         this.fecha_Salida = fecha_Salida;
     }
 
@@ -109,7 +111,15 @@ public class Usuarios {
         this.telefono = telefono;
     }
 
-    public Date getFecha_Salida() {
+    public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+	public Date getFecha_Salida() {
         return fecha_Salida;
     }
 

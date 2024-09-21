@@ -50,8 +50,9 @@ public class UsuariosController extends HttpServlet {
         String email = request.getParameter("email");
         String estado = "A";
         String telefono = request.getParameter("telefono");
+        String rol = request.getParameter("flexRadioRol");
         
-        Usuarios usuarios = new Usuarios(nombres,apellidos,edad,usuario,password,email,estado,telefono,null);
+        Usuarios usuarios = new Usuarios(nombres,apellidos,edad,usuario,password,email,estado,telefono, rol, null);
         switch (accion) {        
             case "Registrar":
                 boolean registroExitosoFalse = dao.insertarUsuario(usuarios);
