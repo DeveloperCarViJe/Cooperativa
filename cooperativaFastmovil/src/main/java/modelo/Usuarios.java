@@ -47,11 +47,19 @@ public class Usuarios {
 
     // Getters y Setters
 
-    public String getNombres() {
-        return nombres;
-    }
+    public Integer getId_User() {
+		return id_User;
+	}
 
-    public void setNombres(String nombres) {
+	public void setId_User(Integer id_User) {
+		this.id_User = id_User;
+	}
+	
+	public String getNombres() {
+	        return nombres;
+	}
+
+	public void setNombres(String nombres) {
         this.nombres = nombres;
     }
 

@@ -1,11 +1,14 @@
 package DAO;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
 import modelo.Usuarios;
 
 
@@ -20,15 +23,15 @@ public class UsuariosDao {
             transaction.begin();
 
             Usuarios usuario = new Usuarios();
-            usuario.setNombres(usuarios.getNombres());
-            usuario.setApellidos(usuarios.getApellidos());
+            usuario.setNombres(usuarios.getNombres().toUpperCase());
+            usuario.setApellidos(usuarios.getApellidos().toUpperCase());
             usuario.setEdad(usuarios.getEdad());
-            usuario.setUsuario(usuarios.getUsuario());
-            usuario.setPassword(usuarios.getPassword());
-            usuario.setEmail(usuarios.getEmail());
-            usuario.setEstado(usuarios.getEstado());
+            usuario.setUsuario(usuarios.getUsuario().toUpperCase());
+            usuario.setPassword(usuarios.getPassword().toUpperCase());
+            usuario.setEmail(usuarios.getEmail().toUpperCase());
+            usuario.setEstado(usuarios.getEstado().toUpperCase());
             usuario.setTelefono(usuarios.getTelefono());
-            usuario.setRol(usuarios.getRol());
+            usuario.setRol(usuarios.getRol().toUpperCase());
             usuario.setFecha_ingreso(new Date());
             usuario.setFecha_Salida(null); // NULL si no se conoce aún
 
@@ -47,6 +50,22 @@ public class UsuariosDao {
                 entityManager.close();
             }
         }
+    }
+    
+    public List<Usuarios> obtenerTodosLosUsuarios() {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        List<Usuarios> usuarios = null;
+        try {
+            String hql = "FROM Usuarios where estado = 'A' order by nombres ASC";
+            usuarios = entityManager.createQuery(hql, Usuarios.class).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+        return usuarios;
     }
     
     public static void closeEntityManagerFactory() {

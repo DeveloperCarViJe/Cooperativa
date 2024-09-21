@@ -1,6 +1,9 @@
 package Controlador;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +35,11 @@ public class UsuariosController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		UsuariosDao usuariosDao = new UsuariosDao();
+	    List<Usuarios> usuarios = usuariosDao.obtenerTodosLosUsuarios();
+	    System.out.println(usuarios);
+	    request.setAttribute("usuarios", usuarios);
+	    request.getRequestDispatcher("FormUsuarios/MostrarUsuarios.jsp").forward(request, response);
 	}
 
 	/**
