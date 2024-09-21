@@ -73,3 +73,22 @@ label {
     color: #333; /* Color del texto */
     font-weight: bold; /* Peso del texto (negrita) */
 }
+
+.menu-item {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #ecf0f1;
+    margin-bottom: 5px;
+}
+
+.submenu {
+    padding-left: 20px; /* Indent the submenu */
+    margin-bottom: 5px;
+}
+
+.submenu a {
+    color: #ecf0f1; /* Color for submenu items */
+    text-decoration: none;
+    font-size: 12px;
+}

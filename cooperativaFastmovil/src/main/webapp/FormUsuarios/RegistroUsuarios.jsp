@@ -11,15 +11,10 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/Usuario.js"></script>
 </head>
 <body>
-	<div class="menu">
-        <h2>MENU</h2>
-        <a href="${pageContext.request.contextPath}/FormUsuarios/RegistroUsuarios.jsp">USUARIOS</a>
-        <a href="about.jsp">CHOFERES</a>
-        <a href="services.jsp">DESTINOS</a>
-        <a href="contact.jsp">CARRERAS</a>
-    </div>
+    <jsp:include page="/Menu.jsp" />
     <div class="contentregistro">
             <h2>REGISTRO DE USUARIOS</h2>
             <div class="row">
@@ -67,17 +62,22 @@
 						        <input type="text" class="form-control" id="telefono" name="telefono" maxlength="50" required>
 						    </div>
 						</div>
-						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="flexRadioRol" id="flexRadioRol1" value="ADMINISTRADOR" checked>
-						  <label class="form-check-label" for="flexRadioDefault1">
-						    ADMINISTRADOR
-						  </label>
-						</div>
-						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="flexRadioRol" id="flexRadioRol2" value="OPERADOR">
-						  <label class="form-check-label" for="flexRadioDefault2">
-						    OPERADOR
-						  </label>
+						<div class="form-group row align-items-center">
+						    <label class="col-sm-2 col-form-label">ROL:</label>
+						    <div class="col-sm-10">
+						        <div class="form-check form-check-inline">
+						            <input class="form-check-input" type="radio" name="flexRadioRol" id="flexRadioRol1" value="ADMINISTRADOR" checked>
+						            <label class="form-check-label" for="flexRadioRol1">
+						                ADMINISTRADOR
+						            </label>
+						        </div>
+						        <div class="form-check form-check-inline">
+						            <input class="form-check-input" type="radio" name="flexRadioRol" id="flexRadioRol2" value="OPERADOR">
+						            <label class="form-check-label" for="flexRadioRol2">
+						                OPERADOR
+						            </label>
+						        </div>
+						    </div>
 						</div>
 		               <div class="form-group row">
 						    <div class="col-sm-10 ml-auto mt-3">
@@ -87,7 +87,7 @@
 		            </form>
 		            <c:if test="${not empty registroExitosoFalse}">
 		                <div id="alertContainer" class="mt-3">
-		                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+		                    <div class="alert alert-success alert-dismissible fade show" role="alert">
 		                        <strong></strong> <c:choose>
 		                            <c:when test="${registroExitosoFalse == 'true'}">Registro ingresado correctamente.</c:when>
 		                            <c:otherwise>Error al ingresar el registro.</c:otherwise>

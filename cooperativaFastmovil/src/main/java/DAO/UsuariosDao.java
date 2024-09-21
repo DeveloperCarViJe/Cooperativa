@@ -28,6 +28,7 @@ public class UsuariosDao {
             usuario.setEmail(usuarios.getEmail());
             usuario.setEstado(usuarios.getEstado());
             usuario.setTelefono(usuarios.getTelefono());
+            usuario.setRol(usuarios.getRol());
             usuario.setFecha_ingreso(new Date());
             usuario.setFecha_Salida(null); // NULL si no se conoce aún
 
