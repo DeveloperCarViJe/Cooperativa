@@ -1,6 +1,7 @@
 package Controlador;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -21,6 +22,7 @@ import modelo.Usuarios;
 public class UsuariosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     UsuariosDao dao= new UsuariosDao();
+    int edad=0;
 	//UsuariosDao2 dao= new UsuariosDao2();
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,8 +39,10 @@ public class UsuariosController extends HttpServlet {
 		// TODO Auto-generated method stub
 		UsuariosDao usuariosDao = new UsuariosDao();
 	    List<Usuarios> usuarios = usuariosDao.obtenerTodosLosUsuarios();
-	    System.out.println(usuarios);
 	    request.setAttribute("usuarios", usuarios);
+	    String actualizacionExitosa = request.getParameter("actualizacionExitosa");
+	    System.out.println(actualizacionExitosa);
+	    request.setAttribute("actualizacionExitosa", actualizacionExitosa);
 	    request.getRequestDispatcher("FormUsuarios/MostrarUsuarios.jsp").forward(request, response);
 	}
 
@@ -46,27 +50,38 @@ public class UsuariosController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String accion = request.getParameter("accion");
-		
 		String nombres = request.getParameter("nombres");
         String apellidos = request.getParameter("apellidos");
-        int edad = Integer.parseInt(request.getParameter("edad"));
+        String edadParam = request.getParameter("edad");
+        if (edadParam != null && !edadParam.isEmpty()) {
+            try {
+                edad = Integer.parseInt(edadParam);
+            } catch (NumberFormatException e) {
+                edad = 0;
+            }
+        }
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         String estado = "A";
         String telefono = request.getParameter("telefono");
         String rol = request.getParameter("flexRadioRol");
-        
-        Usuarios usuarios = new Usuarios(nombres,apellidos,edad,usuario,password,email,estado,telefono, rol, null);
         switch (accion) {        
             case "Registrar":
-                boolean registroExitosoFalse = dao.insertarUsuario(usuarios);
+            	Usuarios usuariosR = new Usuarios(nombres,apellidos,edad,usuario,password,email,estado,telefono, rol, null);
+                boolean registroExitosoFalse = dao.insertarUsuario(usuariosR);
                 request.setAttribute("registroExitosoFalse", registroExitosoFalse);
                 request.getRequestDispatcher("FormUsuarios/RegistroUsuarios.jsp").forward(request, response);
                 break;
-  
+           
+            case "Actualizar":
+            	int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+            	Usuarios usuariosA = new Usuarios(idUsuario,nombres,apellidos,usuario,password,email,telefono);
+            	boolean actualizacionExitosa = dao.actualizarUsuarios(usuariosA);
+            	response.sendRedirect(request.getContextPath() + "/UsuariosController?actualizacionExitosa=" + actualizacionExitosa);
+                break;
+                
             default:
                 throw new AssertionError();
         }

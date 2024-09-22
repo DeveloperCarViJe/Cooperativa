@@ -15,7 +15,6 @@
 <script src="${pageContext.request.contextPath}/js/Usuario.js"></script>
 </head>
 <body>
-<div class="col-sm-12 ml-auto mt-2">
 	<jsp:include page="/Menu.jsp" />
 	<div class="contentregistro">
         <h2>MOSTRAR USUARIOS</h2>
@@ -25,6 +24,7 @@
                     <th>NOMBRES</th>
                     <th>APELLIDOS</th>
                     <th>USUARIO</th>
+                    <th>PASSWORD</th>
                     <th>EMAIL</th>
                     <th>TELEFONO</th>
                     <th>ROL</th>
@@ -33,21 +33,26 @@
             </thead>
             <tbody>
                 <c:forEach var="usuario" items="${usuarios}">
-                    <tr class="text-center">
-                        <td>${usuario.nombres}</td>
-                        <td>${usuario.apellidos}</td>
-                        <td>${usuario.usuario}</td>
-                        <td>${usuario.email}</td>
-                        <td>${usuario.telefono}</td>
-                        <td>${usuario.rol}</td>
-                        <td>
-                            <a href="editarUsuario.jsp?id=${usuario.id_User}" class="btn btn-secondary">EDITAR</a>
-                        </td>
+                    <tr id="fila-${usuario.id_User}">
+                        <td id="nombres-${usuario.id_User}">${usuario.nombres}</td>
+		                <td id="apellidos-${usuario.id_User}">${usuario.apellidos}</td>
+		                <td id="usuario-${usuario.id_User}">${usuario.usuario}</td>
+		                <td id="password-${usuario.id_User}">${usuario.password}</td>
+		                <td id="email-${usuario.id_User}">${usuario.email}</td>
+		                <td id="telefono-${usuario.id_User}">${usuario.telefono}</td>
+		                <td id="rol-${usuario.id_User}">${usuario.rol}</td>
+		                <td>
+							<button class="btn btn-secondary editarBtn" data-id="${usuario.id_User}">EDITAR</button>
+		                </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
     </div>
-   </div>
+    <% if ("true".equals(request.getAttribute("actualizacionExitosa"))) { %>
+    <script>
+        alert("El registro se actualizó correctamente.");
+    </script>
+	<% } %>
 </body>
 </html>

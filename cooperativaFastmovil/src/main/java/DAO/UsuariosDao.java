@@ -68,6 +68,40 @@ public class UsuariosDao {
         return usuarios;
     }
     
+    public boolean actualizarUsuarios(Usuarios usuarios) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            // Verificar si el usuario existe antes de hacer un merge
+            Usuarios usuarioExistente = entityManager.find(Usuarios.class, usuarios.getId_User());
+            if (usuarioExistente != null) {
+                usuarioExistente.setNombres(usuarios.getNombres().toUpperCase());
+                usuarioExistente.setApellidos(usuarios.getApellidos().toUpperCase());
+                usuarioExistente.setUsuario(usuarios.getUsuario().toUpperCase());
+                usuarioExistente.setPassword(usuarios.getPassword().toUpperCase());
+                usuarioExistente.setEmail(usuarios.getEmail().toUpperCase());
+                usuarioExistente.setTelefono(usuarios.getTelefono());
+
+                entityManager.merge(usuarioExistente);  // Actualizar el usuario
+                transaction.commit();
+                return true;
+            } else {
+                return false;  // Usuario no encontrado
+            }
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+    }
+    
     public static void closeEntityManagerFactory() {
         if (entityManagerFactory != null) {
             entityManagerFactory.close();

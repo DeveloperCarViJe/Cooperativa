@@ -6,3 +6,73 @@ function toggleSubMenu(subMenuId) {
         subMenu.style.display = "none";
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const botonesEditar = document.querySelectorAll(".editarBtn"); // Selecciona todos los botones
+
+    botonesEditar.forEach(button => {
+        button.addEventListener("click", function() {
+            const idUsuario = this.getAttribute("data-id");
+            editarFila(idUsuario);
+        });
+    });
+});
+
+function editarFila(idUsuario) {
+    // Convertir las celdas a campos de texto
+    document.getElementById("nombres-" + idUsuario).innerHTML = `<input type="text" value="` + document.getElementById("nombres-" + idUsuario).innerText + `" />`;
+    document.getElementById("apellidos-" + idUsuario).innerHTML = `<input type="text" value="` + document.getElementById("apellidos-" + idUsuario).innerText + `" />`;
+    document.getElementById("usuario-" + idUsuario).innerHTML = `<input type="text" value="` + document.getElementById("usuario-" + idUsuario).innerText + `" />`;
+    document.getElementById("password-" + idUsuario).innerHTML = `<input type="password" value="` + document.getElementById("password-" + idUsuario).innerText + `" />`;
+    document.getElementById("email-" + idUsuario).innerHTML = `<input type="email" value="` + document.getElementById("email-" + idUsuario).innerText + `" />`;
+    document.getElementById("telefono-" + idUsuario).innerHTML = `<input type="text" value="` + document.getElementById("telefono-" + idUsuario).innerText + `" />`;
+    document.getElementById("rol-" + idUsuario).innerHTML = `<input type="text" value="` + document.getElementById("rol-" + idUsuario).innerText + `" disabled />`;
+
+    // Cambiar el botón a "Guardar"
+    document.querySelector("#fila-" + idUsuario + " td:last-child").innerHTML = `<button class="btn btn-success" onclick="ActualizarUsuarios(` + idUsuario + `)">ACTUALIZAR</button>`;
+}
+
+function ActualizarUsuarios(idUsuario) {
+    // Recoger los valores de los inputs
+    const nombres = document.querySelector(`#nombres-${idUsuario} input`).value;
+    const apellidos = document.querySelector(`#apellidos-${idUsuario} input`).value;
+    const usuario = document.querySelector(`#usuario-${idUsuario} input`).value;
+    const password = document.querySelector(`#password-${idUsuario} input`).value;
+    const email = document.querySelector(`#email-${idUsuario} input`).value;
+    const telefono = document.querySelector(`#telefono-${idUsuario} input`).value;
+	
+	const params = new URLSearchParams();
+	params.append("accion", "Actualizar");
+	params.append("idUsuario", idUsuario);
+	params.append("nombres", nombres);
+	params.append("apellidos", apellidos);
+	params.append("usuario", usuario);
+	params.append("password", password);
+	params.append("email", email);
+	params.append("telefono", telefono);
+	
+	fetch('/cooperativaFastmovil/UsuariosController', {
+	    method: 'POST',
+	    headers: {
+	        'Content-Type': 'application/x-www-form-urlencoded',
+	    },
+	    body: params.toString()
+	})
+	.then(response => {
+	    if (!response.ok) {
+	        console.error('Respuesta del servidor:', response.status, response.statusText);
+	        return response.text().then(text => {
+	            throw new Error(text || 'Error en la respuesta del servidor.');
+	        });
+	    }
+	    return response.text();
+	})
+	.then(data => {
+	    // Redirigir después de la actualización exitosa
+	    window.location.href = '/cooperativaFastmovil/UsuariosController';
+	})
+	.catch(error => {
+	    alert("Error: " + error.message);  // Mostrar el error en un alert
+	    console.error('Error:', error);
+	});
+}

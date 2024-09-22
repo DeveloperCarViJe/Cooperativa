@@ -27,13 +27,11 @@ public class Usuarios {
     private Date Fecha_ingreso;
 	private Date fecha_Salida;
 
-    // Constructor sin parámetros
     public Usuarios() {
     }
 
-    // Constructor con todos los parámetros
     public Usuarios(String nombres, String apellidos, Integer edad, String usuario, String password, String email, String estado, String telefono, String rol, Date fecha_Salida) {
-        this.nombres = nombres;
+    	this.nombres = nombres;
         this.apellidos = apellidos;
         this.edad = edad;
         this.usuario = usuario;
@@ -43,6 +41,16 @@ public class Usuarios {
         this.telefono = telefono;
         this.rol = rol;
         this.fecha_Salida = fecha_Salida;
+    }
+    
+    public Usuarios(Integer id_User, String nombres, String apellidos, String usuario, String password, String email, String telefono) {
+    	this.id_User = id_User;
+    	this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.usuario = usuario;
+        this.password = password;
+        this.email = email;
+        this.telefono = telefono;
     }
 
     // Getters y Setters
