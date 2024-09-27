@@ -87,15 +87,12 @@
 						</div>
 		            </form>
 		            <c:if test="${not empty registroExitosoFalse}">
-		                <div id="alertContainer" class="mt-3">
+		                <div id="alertRegistroUsuario" class="mt-3">
 		                    <div class="alert alert-success alert-dismissible fade show" role="alert">
 		                        <strong></strong> <c:choose>
 		                            <c:when test="${registroExitosoFalse == 'true'}">Registro ingresado correctamente.</c:when>
 		                            <c:otherwise>Error al ingresar el registro.</c:otherwise>
 		                        </c:choose>
-		                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		                            <span aria-hidden="true">&times;</span>
-		                        </button>
 		                    </div>
 		                </div>
 		            </c:if>

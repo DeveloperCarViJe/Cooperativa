@@ -1,10 +1,8 @@
 package Controlador;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.UsuariosDao;
-import DAO.UsuariosDao2;
 import modelo.Usuarios;
 
 /**
@@ -40,9 +37,6 @@ public class UsuariosController extends HttpServlet {
 		UsuariosDao usuariosDao = new UsuariosDao();
 	    List<Usuarios> usuarios = usuariosDao.obtenerTodosLosUsuarios();
 	    request.setAttribute("usuarios", usuarios);
-	    String actualizacionExitosa = request.getParameter("actualizacionExitosa");
-	    System.out.println(actualizacionExitosa);
-	    request.setAttribute("actualizacionExitosa", actualizacionExitosa);
 	    request.getRequestDispatcher("FormUsuarios/MostrarUsuarios.jsp").forward(request, response);
 	}
 
@@ -76,11 +70,15 @@ public class UsuariosController extends HttpServlet {
                 break;
            
             case "Actualizar":
-            	int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
-            	Usuarios usuariosA = new Usuarios(idUsuario,nombres,apellidos,usuario,password,email,telefono);
-            	boolean actualizacionExitosa = dao.actualizarUsuarios(usuariosA);
-            	response.sendRedirect(request.getContextPath() + "/UsuariosController?actualizacionExitosa=" + actualizacionExitosa);
-                break;
+            	int idUsuarioActualizar = Integer.parseInt(request.getParameter("idUsuario"));
+            	Usuarios usuariosA = new Usuarios(idUsuarioActualizar,nombres,apellidos,usuario,password,email,telefono);
+            	dao.actualizarUsuarios(usuariosA);
+            	break;
+            
+            case "Eliminar":
+            	int idUsuarioEliminar = Integer.parseInt(request.getParameter("idUsuario"));
+            	dao.desactivarUsuario(idUsuarioEliminar);
+            	break;
                 
             default:
                 throw new AssertionError();

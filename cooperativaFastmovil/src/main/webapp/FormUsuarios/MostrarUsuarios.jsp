@@ -31,7 +31,7 @@
                     <th>ACCION</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody >
                 <c:forEach var="usuario" items="${usuarios}">
                     <tr id="fila-${usuario.id_User}">
                         <td id="nombres-${usuario.id_User}">${usuario.nombres}</td>
@@ -41,18 +41,18 @@
 		                <td id="email-${usuario.id_User}">${usuario.email}</td>
 		                <td id="telefono-${usuario.id_User}">${usuario.telefono}</td>
 		                <td id="rol-${usuario.id_User}">${usuario.rol}</td>
-		                <td>
-							<button class="btn btn-secondary editarBtn" data-id="${usuario.id_User}">EDITAR</button>
+		                <td style="text-align: center;">
+							<a href="#" class="editarBtnUsuarios" data-id="${usuario.id_User}" title="Editar">
+							    <i class="fas fa-edit fa-2x" style="margin-right: 10px; color: #5F9EA0;"></i>
+							</a>
+							<a href="#" class="eliminarBtnUsuarios" data-id="${usuario.id_User}" title="Eliminar">
+							    <i class="fas fa-trash-alt fa-2x" style="color: #A52A2A;"></i>
+							</a>
 		                </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
     </div>
-    <% if ("true".equals(request.getAttribute("actualizacionExitosa"))) { %>
-    <script>
-        alert("El registro se actualizó correctamente.");
-    </script>
-	<% } %>
 </body>
 </html>

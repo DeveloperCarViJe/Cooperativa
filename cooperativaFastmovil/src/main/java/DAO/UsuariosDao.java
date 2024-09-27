@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 
 import modelo.Usuarios;
 
@@ -68,7 +67,7 @@ public class UsuariosDao {
         return usuarios;
     }
     
-    public boolean actualizarUsuarios(Usuarios usuarios) {
+    public void actualizarUsuarios(Usuarios usuarios) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -85,16 +84,38 @@ public class UsuariosDao {
 
                 entityManager.merge(usuarioExistente);  // Actualizar el usuario
                 transaction.commit();
-                return true;
-            } else {
-                return false;  // Usuario no encontrado
             }
         } catch (Exception e) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
             e.printStackTrace();
-            return false;
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+    }
+    
+    public void desactivarUsuario(int idUSer) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            // Buscar el usuario por ID
+            Usuarios usuarioExistente = entityManager.find(Usuarios.class, idUSer);
+            if (usuarioExistente != null) {
+                usuarioExistente.setEstado("I");
+                usuarioExistente.setFecha_Salida(new Date());
+                
+                entityManager.merge(usuarioExistente);
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
         } finally {
             if (entityManager != null) {
                 entityManager.close();
