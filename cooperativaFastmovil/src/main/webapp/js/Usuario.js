@@ -10,7 +10,6 @@ function toggleSubMenu(subMenuId) {
 document.addEventListener("DOMContentLoaded", function() {
     const botonesEditarUsuarios = document.querySelectorAll(".editarBtnUsuarios");
 	const botonesEliminarUsuarios = document.querySelectorAll(".eliminarBtnUsuarios");
-
     botonesEditarUsuarios.forEach(button => {
         button.addEventListener("click", function() {
             const idUsuario = this.getAttribute("data-id");

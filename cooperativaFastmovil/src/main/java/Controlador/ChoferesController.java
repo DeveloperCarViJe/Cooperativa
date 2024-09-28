@@ -9,22 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.UsuariosDao;
-import modelo.Usuarios;
+import DAO.ChoferesDao;
+import modelo.Choferes;
 
 /**
- * Servlet implementation class UsuariosController
+ * Servlet implementation class ChoferesController
  */
-@WebServlet("/UsuariosController")
-public class UsuariosController extends HttpServlet {
+@WebServlet("/ChoferesController")
+public class ChoferesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    UsuariosDao dao= new UsuariosDao();
-    int edad=0;
-	//UsuariosDao2 dao= new UsuariosDao2();
+	ChoferesDao dao = new ChoferesDao();
+	int edad=0;
+	int movil=0;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsuariosController() {
+    public ChoferesController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,17 +35,26 @@ public class UsuariosController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		UsuariosDao usuariosDao = new UsuariosDao();
-	    List<Usuarios> usuarios = usuariosDao.obtenerTodosLosUsuarios();
-	    request.setAttribute("usuarios", usuarios);
-	    request.getRequestDispatcher("Formularios/MostrarUsuarios.jsp").forward(request, response);
+		ChoferesDao choferesDao = new ChoferesDao();
+	    List<Choferes> choferes = choferesDao.obtenerTodosLosChoferes();
+	    request.setAttribute("choferes", choferes);
+	    request.getRequestDispatcher("Formularios/MostrarChoferes.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String accion = request.getParameter("accion");
+		String movilParam = request.getParameter("movil");
+        if (movilParam != null && !movilParam.isEmpty()) {
+            try {
+            	movil = Integer.parseInt(movilParam);
+            } catch (NumberFormatException e) {
+            	movil = 0;
+            }
+        }
 		String nombres = request.getParameter("nombres");
         String apellidos = request.getParameter("apellidos");
         String edadParam = request.getParameter("edad");
@@ -55,34 +65,35 @@ public class UsuariosController extends HttpServlet {
                 edad = 0;
             }
         }
-        String usuario = request.getParameter("usuario");
-        String password = request.getParameter("password");
         String email = request.getParameter("email");
         String estado = "A";
         String telefono = request.getParameter("telefono");
-        String rol = request.getParameter("flexRadioRol");
+        String direccion = request.getParameter("direccion");
+        String modelo = request.getParameter("modelo");
+        String color = request.getParameter("color");
+        String placa = request.getParameter("placa");
         switch (accion) {        
             case "Registrar":
-            	Usuarios usuariosR = new Usuarios(nombres,apellidos,edad,usuario,password,email,estado,telefono, rol, null);
-                boolean registroExitosoFalse = dao.insertarUsuario(usuariosR);
+            	Choferes choferesR = new Choferes(movil,nombres,apellidos,edad,email,estado,telefono,direccion,modelo,color,placa,null);
+                boolean registroExitosoFalse = dao.insertarChofer(choferesR);
                 request.setAttribute("registroExitosoFalse", registroExitosoFalse);
-                request.getRequestDispatcher("Formularios/RegistroUsuarios.jsp").forward(request, response);
+                request.getRequestDispatcher("Formularios/RegistroChoferes.jsp").forward(request, response);
                 break;
            
             case "Actualizar":
-            	int idUsuarioActualizar = Integer.parseInt(request.getParameter("idUsuario"));
+            	/*int idUsuarioActualizar = Integer.parseInt(request.getParameter("idUsuario"));
             	Usuarios usuariosA = new Usuarios(idUsuarioActualizar,nombres,apellidos,usuario,password,email,telefono);
-            	dao.actualizarUsuarios(usuariosA);
+            	dao.actualizarUsuarios(usuariosA);*/
             	break;
             
             case "Eliminar":
-            	int idUsuarioEliminar = Integer.parseInt(request.getParameter("idUsuario"));
-            	dao.desactivarUsuario(idUsuarioEliminar);
+            	int idChoferEliminar = Integer.parseInt(request.getParameter("idChofer"));
+            	dao.desactivarChofer(idChoferEliminar);
             	break;
                 
             default:
                 throw new AssertionError();
         }
-    }
+	}
 
 }

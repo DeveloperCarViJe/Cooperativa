@@ -9,7 +9,7 @@ body {
  	position: fixed;
     left: 0;
     top: 0;
-    width: 250px;
+    width: 200px;
     height: 100%;
     background-color: #37474f; /* Fondo más oscuro */
     padding-top: 20px;
@@ -50,28 +50,22 @@ body {
     flex: 1;
     padding: 15px;
     text-align: center;
-    margin-left: 250px; /* Ajusta el contenido para dejar espacio al menú fijo */
+    margin-left: 200px; /* Ajusta el contenido para dejar espacio al menú fijo */
 }
 
 .contentregistro{
     flex: 1;
     padding: 15px;
-    margin-left: 250px; /* Ajusta el contenido para dejar espacio al menú fijo */
+    margin-left: 200px; /* Ajusta el contenido para dejar espacio al menú fijo */
 }
 
 .contentregistro h2{
     text-align: center;
+    font-size: 25px;
 }
 
  .custom-width {
         max-width: 30px;
-}
-
-label {
-    font-family: Arial, sans-serif; /* Fuente del texto */
-    font-size: 16px; /* Tamaño del texto */
-    color: #333; /* Color del texto */
-    font-weight: bold; /* Peso del texto (negrita) */
 }
 
 .menu-item {
@@ -112,4 +106,37 @@ label {
     box-sizing: border-box; /* Incluye padding y borde en el cálculo del ancho */
     padding: 5px; /* Agrega padding para mejor apariencia */
     font-size: 15px; /* Ajusta el tamaño de la fuente de los inputs */
+}
+
+.form-section {
+	margin-bottom: 0px; /* Aumenta el espacio externo entre secciones */
+	margin-top: 0;
+    padding: 10px; /* Aumenta el espacio interno */
+    border: 2px solid #ccc; /* Borde gris de 2px */
+    border-radius: 4px; /* Bordes redondeados */
+    width: 200%; /* O puedes usar un valor fijo como 600px */
+    max-width: 500px; /* Máximo ancho para que no sea demasiado grande */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 0px;
+}
+
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="number"],
+.form-section input[type="radio"] {
+    width: 100%;
+    padding: 2px;
+    margin-bottom: 1px;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    
+}
+
+button.btn-secondary {
+    margin-top: 0;
+    margin-bottom: 0;
 }
