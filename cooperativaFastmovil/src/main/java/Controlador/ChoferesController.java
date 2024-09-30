@@ -35,6 +35,14 @@ public class ChoferesController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String alertEliminar = request.getParameter("eliminarExitoFalse");
+        if (alertEliminar != null && !alertEliminar.isEmpty()) {
+            try {
+            	request.setAttribute("eliminacionExitosaFalse", alertEliminar);
+            } catch (NumberFormatException e) {
+            	request.setAttribute("eliminacionExitosaFalse", "false");
+            }
+        }
 		ChoferesDao choferesDao = new ChoferesDao();
 	    List<Choferes> choferes = choferesDao.obtenerTodosLosChoferes();
 	    request.setAttribute("choferes", choferes);
@@ -77,6 +85,7 @@ public class ChoferesController extends HttpServlet {
             	Choferes choferesR = new Choferes(movil,nombres,apellidos,edad,email,estado,telefono,direccion,modelo,color,placa,null);
                 boolean registroExitosoFalse = dao.insertarChofer(choferesR);
                 request.setAttribute("registroExitosoFalse", registroExitosoFalse);
+                request.setAttribute("mostrarAlerta", "true");
                 request.getRequestDispatcher("Formularios/RegistroChoferes.jsp").forward(request, response);
                 break;
            
@@ -88,8 +97,25 @@ public class ChoferesController extends HttpServlet {
             
             case "Eliminar":
             	int idChoferEliminar = Integer.parseInt(request.getParameter("idChofer"));
-            	dao.desactivarChofer(idChoferEliminar);
+            	boolean EliminacionExitosoFalse = dao.desactivarChofer(idChoferEliminar);
+            	response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                String jsonResponseEliminar = "{\"eliminar\": " + EliminacionExitosoFalse + "}";
+                response.getWriter().write(jsonResponseEliminar);
             	break;
+            
+            case "ValidarMovil":
+                boolean movilExiste = dao.movilExistente(movil);
+                
+                // Construcción manual de JSON
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                
+                // Envío de la respuesta como un objeto JSON con clave 'existe'
+                String jsonResponseValidar = "{\"existe\": " + movilExiste + "}";
+                response.getWriter().write(jsonResponseValidar);
+                break;
+
                 
             default:
                 throw new AssertionError();

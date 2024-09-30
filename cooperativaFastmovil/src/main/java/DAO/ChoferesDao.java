@@ -9,7 +9,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import modelo.Choferes;
-import modelo.Usuarios;
 
 public class ChoferesDao {
 	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
@@ -69,7 +68,7 @@ public class ChoferesDao {
         return choferes;
     }
     
-    public void desactivarChofer(int idChofer) {
+    public boolean desactivarChofer(int idChofer) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -83,11 +82,28 @@ public class ChoferesDao {
                 entityManager.merge(usuarioExistente);
                 transaction.commit();
             }
+            return true;
         } catch (Exception e) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
             e.printStackTrace();
+            return false;
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+    }
+    
+    public boolean movilExistente(int movil) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            String jpql = "SELECT c FROM Choferes c WHERE c.movil = :movil and c.estado = 'A'";
+            List<Choferes> resultado = entityManager.createQuery(jpql, Choferes.class)
+                                                    .setParameter("movil", movil)
+                                                    .getResultList();
+            return !resultado.isEmpty(); // Devuelve true si el móvil ya existe
         } finally {
             if (entityManager != null) {
                 entityManager.close();

@@ -20,10 +20,10 @@
             <div class="form-group row d-flex justify-content-center align-items-center position-relative">
 			    <div class="col-sm-8 text-center">
 			        <h2 class="m-0">REGISTRO DE CHOFERES</h2>
+			        <p id="alertaMovil"></p>
 			    </div>
 			    <div class="position-absolute" style="top: 0; right: 10px;">
-			        <c:if test="${not empty registroExitosoFalse}">
-			            <div id="alertRegistroUsuario">
+			            <div id="alertRegistroChofer" style="display: ${mostrarAlerta ? 'block' : 'none'};">
 			                <div class="alert alert-success alert-dismissible fade show" role="alert">
 			                    <strong></strong> 
 			                    <c:choose>
@@ -36,12 +36,11 @@
 			                    </c:choose>
 			                </div>
 			            </div>
-			        </c:if>
 			    </div>
 			</div>
             <div class="row">
             	<div class="col-md-7">
-		            <form action="/cooperativaFastmovil/ChoferesController" method="post">
+		            <form id="formRegistroChoferes" action="/cooperativaFastmovil/ChoferesController" method="post">
 						<div class="form-section mb-4">
 						    <h3>DATOS CHOFER</h3>
 						    <div class="form-group row">
@@ -93,12 +92,13 @@
 						        <label for="placa" class="col-sm-2 col-form-label">PLACA:</label>
 						        <div class="col-sm-4">
 						            <input type="text" class="form-control" id="placa" name="placa" maxlength="50" required>
+						            <input type="hidden" name="accion" value="Registrar">
 						        </div>
 							</div>
 						</div>
 				        <div class="form-group row">
 							 <div class="col-sm-11 offset-sm-2 d-flex justify-content-center">
-							     <button type="submit" class="btn btn-secondary btn-lg px-4 py-2" name="accion" value="Registrar">REGISTRAR CHOFER</button>
+							     <button type="submit" id="registrarChoferBtn" class="btn btn-secondary btn-lg px-4 py-2" name="accion" value="Registrar">REGISTRAR CHOFER</button>
 							 </div>
 						</div>
 		            </form>
