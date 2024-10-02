@@ -34,6 +34,31 @@ public class UsuariosController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String mostrarMensaje="";
+		String alertEliminarActualizar = request.getParameter("accionExitoFalse");
+		String getaccionMostrar = request.getParameter("accionMostrar");
+		if (alertEliminarActualizar != null && !alertEliminarActualizar.isEmpty()) {
+            try {
+            	if ("E".equals(getaccionMostrar)) {
+            	    if ("true".equals(alertEliminarActualizar)) {
+            	        mostrarMensaje = "Usuario Eliminado correctamente";
+            	    } else {
+            	        mostrarMensaje = "Error al eliminar el Usuario";
+            	    }
+            	} else {
+            	    if ("true".equals(alertEliminarActualizar)) {
+            	        mostrarMensaje = "Usuario Actualizado correctamente";
+            	    } else {
+            	        mostrarMensaje = "Error al actualizar el Usuario";
+            	    }
+            	}
+            	request.setAttribute("mostrarMensaje", mostrarMensaje);
+            	request.setAttribute("accionExitosaFalse", alertEliminarActualizar);
+            } catch (NumberFormatException e) {
+            	request.setAttribute("getaccionMostrar", mostrarMensaje);
+            	request.setAttribute("accionExitosaFalse", "false");
+            }
+        }
 		UsuariosDao usuariosDao = new UsuariosDao();
 	    List<Usuarios> usuarios = usuariosDao.obtenerTodosLosUsuarios();
 	    request.setAttribute("usuarios", usuarios);
@@ -72,12 +97,22 @@ public class UsuariosController extends HttpServlet {
             case "Actualizar":
             	int idUsuarioActualizar = Integer.parseInt(request.getParameter("idUsuario"));
             	Usuarios usuariosA = new Usuarios(idUsuarioActualizar,nombres,apellidos,usuario,password,email,telefono);
-            	dao.actualizarUsuarios(usuariosA);
+            	boolean accionExitosaFalseA = dao.actualizarUsuarios(usuariosA);
+
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                String jsonResponseActualizar = "{\"accion\": " + accionExitosaFalseA + "}";
+                response.getWriter().write(jsonResponseActualizar);
             	break;
             
             case "Eliminar":
             	int idUsuarioEliminar = Integer.parseInt(request.getParameter("idUsuario"));
-            	dao.desactivarUsuario(idUsuarioEliminar);
+            	boolean accionExitosaFalseE = dao.desactivarUsuario(idUsuarioEliminar);
+            	
+            	response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                String jsonResponseEliminar = "{\"accion\": " + accionExitosaFalseE + "}";
+                response.getWriter().write(jsonResponseEliminar);
             	break;
                 
             default:

@@ -17,7 +17,28 @@
 <body>
 	<jsp:include page="/Menu.jsp" />
 	<div class="contentregistro">
-        <h2>MOSTRAR USUARIOS</h2>
+        <div class="form-group row d-flex justify-content-center align-items-center position-relative">
+			    <div class="col-sm-8 text-center">
+			        <h2 class="m-0">MOSTRAR USUARIOS</h2>
+			    </div>
+			    <div class="position-absolute" style="top: -10px; right: 10px;">
+				   <c:if test="${not empty accionExitosaFalse}">
+				            <div id="alertRegistroUsuario">
+				                <div class="alert alert-success alert-dismissible fade show" role="alert">
+				                    <strong></strong> 
+				                    <c:choose>
+				                        <c:when test="${accionExitosaFalse == 'true'}">
+				                            ${mostrarMensaje}
+				                        </c:when>
+				                        <c:otherwise>
+				                            ${mostrarMensaje}
+				                        </c:otherwise>
+				                    </c:choose>
+				                </div>
+				            </div>
+				    </c:if>
+				</div>
+		</div>
         <table class="table">
             <thead>
                 <tr class="text-center">

@@ -94,6 +94,13 @@
 						            <input type="text" class="form-control" id="placa" name="placa" maxlength="50" required>
 						            <input type="hidden" name="accion" value="Registrar">
 						        </div>
+						        <label for="placa" class="col-sm-2 col-form-label">FOTO:</label>
+						         <div class="col-sm-4">
+							        <div class="custom-file">
+									    <input type="file" class="custom-file-input" id="file" name="file" accept="image/*" maxlength="50" required onchange="updateFileName()">
+									    <label class="custom-file-label" for="file">Selecciona imagen</label>
+									</div>
+							    </div>
 							</div>
 						</div>
 				        <div class="form-group row">

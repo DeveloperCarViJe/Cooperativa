@@ -67,16 +67,16 @@ function ActualizarUsuarios(idUsuario) {
 	    body: params.toString()
 	})
 	.then(response => {
-	    if (!response.ok) {
-	        console.error('Respuesta del servidor:', response.status, response.statusText);
-	        return response.text().then(text => {
-	            throw new Error(text || 'Error en la respuesta del servidor.');
-	        });
-	    }
-	    return response.text();
+				    // Verifica si el contenido devuelto es JSON
+				    if (!response.ok) {
+				        throw new Error('Error en la respuesta del servidor.');
+				    }
+				    return response.json();  // Interpreta la respuesta como JSON
 	})
 	.then(data => {
-	    window.location.href = '/cooperativaFastmovil/UsuariosController';
+		const ActualizarExitoFalse= data.accion;
+		const accionMostrar="A";
+				window.location.href = '/cooperativaFastmovil/UsuariosController?accionExitoFalse=' + ActualizarExitoFalse + '&accionMostrar=' + accionMostrar;
 	})
 	.catch(error => {
 	    alert("Error: " + error.message);  // Mostrar el error en un alert
@@ -98,16 +98,16 @@ function EliminarUsuarios(idUsuario) {
 	    body: params.toString()
 	})
 	.then(response => {
-	    if (!response.ok) {
-	        console.error('Respuesta del servidor:', response.status, response.statusText);
-	        return response.text().then(text => {
-	            throw new Error(text || 'Error en la respuesta del servidor.');
-	        });
-	    }
-	    return response.text();
+					    // Verifica si el contenido devuelto es JSON
+					    if (!response.ok) {
+					        throw new Error('Error en la respuesta del servidor.');
+					    }
+					    return response.json();  // Interpreta la respuesta como JSON
 	})
 	.then(data => {
-	    window.location.href = '/cooperativaFastmovil/UsuariosController';
+		const EliminarExitoFalse= data.accion;
+		const accionMostrar="E";
+		window.location.href = '/cooperativaFastmovil/UsuariosController?accionExitoFalse=' + EliminarExitoFalse + '&accionMostrar=' + accionMostrar;
 	})
 	.catch(error => {
 	    alert("Error: " + error.message);  // Mostrar el error en un alert

@@ -67,7 +67,7 @@ public class UsuariosDao {
         return usuarios;
     }
     
-    public void actualizarUsuarios(Usuarios usuarios) {
+    public boolean actualizarUsuarios(Usuarios usuarios) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -85,11 +85,13 @@ public class UsuariosDao {
                 entityManager.merge(usuarioExistente);  // Actualizar el usuario
                 transaction.commit();
             }
+            return true;
         } catch (Exception e) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
             e.printStackTrace();
+            return false;
         } finally {
             if (entityManager != null) {
                 entityManager.close();
@@ -97,7 +99,7 @@ public class UsuariosDao {
         }
     }
     
-    public void desactivarUsuario(int idUSer) {
+    public boolean desactivarUsuario(int idUSer) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -111,11 +113,13 @@ public class UsuariosDao {
                 entityManager.merge(usuarioExistente);
                 transaction.commit();
             }
+            return true;
         } catch (Exception e) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
             e.printStackTrace();
+            return false;
         } finally {
             if (entityManager != null) {
                 entityManager.close();

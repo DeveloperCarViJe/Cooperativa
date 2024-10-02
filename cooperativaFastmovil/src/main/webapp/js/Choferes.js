@@ -112,3 +112,12 @@ function EliminarChoferes(idChofer) {
         console.error('Error:', error);
     });
 }
+
+function updateFileName() {
+        const fileInput = document.getElementById('file');
+        const fileLabel = document.querySelector('.custom-file-label');
+        
+        if (fileInput.files.length > 0) {
+            fileLabel.textContent = fileInput.files[0].name;  // Actualiza el texto con el nombre del archivo
+        }
+    }
