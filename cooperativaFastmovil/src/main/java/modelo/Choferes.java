@@ -25,7 +25,7 @@ public class Choferes {
     private String modelo;
     private String color_vehiculo;
     private String numero_placa;
-    private byte[] fotos_vehiculo;
+    //private byte[] fotos_vehiculo;
     private Date Fecha_ingreso;
 	private Date fecha_Salida;
 	
@@ -45,12 +45,12 @@ public class Choferes {
 		this.modelo = modelo;
 		this.color_vehiculo = color_vehiculo;
 		this.numero_placa = numero_placa;
-		this.fotos_vehiculo = fotos_vehiculo;
+		//this.fotos_vehiculo = fotos_vehiculo;
 		this.Fecha_ingreso = fecha_ingreso;
 		this.fecha_Salida = fecha_Salida;
 	}
 	
-	public Choferes(Integer movil, String nombres, String apellidos, Integer edad, String email, String estado, String telefono, String direccion, String modelo, String color_vehiculo, String numero_placa,byte[] fotos_vehiculo) {
+	public Choferes(Integer movil, String nombres, String apellidos, Integer edad, String email, String estado, String telefono, String direccion, String modelo, String color_vehiculo, String numero_placa/*,byte[] fotos_vehiculo*/) {
 		this.movil = movil;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
@@ -62,7 +62,7 @@ public class Choferes {
 		this.modelo = modelo;
 		this.color_vehiculo = color_vehiculo;
 		this.numero_placa = numero_placa;
-		this.fotos_vehiculo = fotos_vehiculo;
+		//this.fotos_vehiculo = fotos_vehiculo;
 	}
 	
 	
@@ -141,12 +141,12 @@ public class Choferes {
 	public void setNumero_placa(String numero_placa) {
 		this.numero_placa = numero_placa;
 	}
-	public byte[] getFotos_vehiculo() {
+	/*public byte[] getFotos_vehiculo() {
 		return fotos_vehiculo;
 	}
 	public void setFotos_vehiculo(byte[] fotos_vehiculo) {
 		this.fotos_vehiculo = fotos_vehiculo;
-	}
+	}*/
 	public Date getFecha_ingreso() {
 		return Fecha_ingreso;
 	}

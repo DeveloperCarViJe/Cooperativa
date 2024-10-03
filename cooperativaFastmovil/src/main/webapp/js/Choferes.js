@@ -22,18 +22,21 @@ document.addEventListener("DOMContentLoaded", function() {
     // Evento para validar el movil existente
     const registrarChoferBtn = document.getElementById('registrarChoferBtn');
     if (registrarChoferBtn) {
+		console.log("Botón 'Registrar Chofer' encontrado"); 
         registrarChoferBtn.addEventListener('click', function(event) {
             event.preventDefault();
+			console.log("Evento click del botón registrado");
 			const movil = document.getElementById('movil').value;
+			console.log("Móvil ingresado:", movil);
 			const params = new URLSearchParams();
 			    params.append("accion", "ValidarMovil");
 			    params.append("movil", movil);
 
             fetch('/cooperativaFastmovil/ChoferesController', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
+				headers: {
+				                'Content-Type': 'application/x-www-form-urlencoded',
+				            },
                  body: params.toString()
             })
 			.then(response => {
@@ -69,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             })
             .catch(error => {
-                alert('Error al verificar el número de móvil.');
+                alert('Error al registrar el movil.');
             });
         });
     }

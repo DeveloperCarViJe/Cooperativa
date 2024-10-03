@@ -40,7 +40,7 @@
 			</div>
             <div class="row">
             	<div class="col-md-7">
-		            <form id="formRegistroChoferes" action="/cooperativaFastmovil/ChoferesController" method="post">
+		            <form id="formRegistroChoferes" action="/cooperativaFastmovil/ChoferesController" method="post" enctype="multipart/form-data">
 						<div class="form-section mb-4">
 						    <h3>DATOS CHOFER</h3>
 						    <div class="form-group row">

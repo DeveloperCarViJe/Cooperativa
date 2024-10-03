@@ -31,13 +31,13 @@ public class ChoferesDao {
             chofer.setModelo(choferes.getModelo().toUpperCase());
             chofer.setColor_vehiculo(choferes.getColor_vehiculo().toUpperCase());
             chofer.setNumero_placa(choferes.getNumero_placa().toUpperCase());
-            chofer.setFotos_vehiculo(choferes.getFotos_vehiculo());
+            //chofer.setFotos_vehiculo(choferes.getFotos_vehiculo());
             chofer.setFecha_ingreso(new Date());
             chofer.setFecha_Salida(null);
-
             entityManager.persist(chofer);
 
             transaction.commit();
+            choferes.setId_chofer(chofer.getId_chofer());
             return true;
         } catch (Exception e) {
             if (transaction.isActive()) {

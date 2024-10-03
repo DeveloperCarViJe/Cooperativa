@@ -1,21 +1,27 @@
 package Controlador;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import DAO.ChoferesDao;
+import DAO.ImagenesChoferesDao;
 import modelo.Choferes;
+import modelo.ImagenesChoferes;
 
 /**
  * Servlet implementation class ChoferesController
  */
 @WebServlet("/ChoferesController")
+@MultipartConfig
 public class ChoferesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ChoferesDao dao = new ChoferesDao();
@@ -55,6 +61,7 @@ public class ChoferesController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String accion = request.getParameter("accion");
+		System.out.println("Acción recibida: " + accion);
 		String movilParam = request.getParameter("movil");
         if (movilParam != null && !movilParam.isEmpty()) {
             try {
@@ -80,11 +87,35 @@ public class ChoferesController extends HttpServlet {
         String modelo = request.getParameter("modelo");
         String color = request.getParameter("color");
         String placa = request.getParameter("placa");
+        byte[] imageBytes = null;
+     // Obtiene la imagen desde el formulario
+        InputStream inputStream = null;
+        if ("Registrar".equals(accion)) {
+            try {
+			        Part filePart = request.getPart("file");
+			        if (filePart != null) {
+			            inputStream = filePart.getInputStream();
+			            imageBytes = inputStream.readAllBytes();
+			        }
+            	} finally {
+            		if (inputStream != null) {
+            	        inputStream.close(); 
+            	    }
+            	}
+        }
+        //System.out.println(imageBytes);
         switch (accion) {        
             case "Registrar":
-            	Choferes choferesR = new Choferes(movil,nombres,apellidos,edad,email,estado,telefono,direccion,modelo,color,placa,null);
+            	Choferes choferesR = new Choferes(movil,nombres,apellidos,edad,email,estado,telefono,direccion,modelo,color,placa/*,imageBytes*/);
                 boolean registroExitosoFalse = dao.insertarChofer(choferesR);
                 request.setAttribute("registroExitosoFalse", registroExitosoFalse);
+                if (registroExitosoFalse) {
+                    // Obtener el ID del chofer recién insertado
+                    int choferId = choferesR.getId_chofer();
+                    ImagenesChoferesDao daoImagenesChoferesDao = new ImagenesChoferesDao();
+                    boolean imagenInsertada = daoImagenesChoferesDao.insertarImagen(choferId, imageBytes);
+                    request.setAttribute("registroExitosoFalse", imagenInsertada);
+                }
                 request.setAttribute("mostrarAlerta", "true");
                 request.getRequestDispatcher("Formularios/RegistroChoferes.jsp").forward(request, response);
                 break;
@@ -105,6 +136,7 @@ public class ChoferesController extends HttpServlet {
             	break;
             
             case "ValidarMovil":
+            	System.out.println("ingreso validar movil");
                 boolean movilExiste = dao.movilExistente(movil);
                 
                 // Construcción manual de JSON
