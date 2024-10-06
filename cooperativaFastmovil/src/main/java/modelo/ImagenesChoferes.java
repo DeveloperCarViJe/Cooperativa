@@ -22,13 +22,16 @@ public class ImagenesChoferes {
 	
 	private byte[] imagen;
 	
+	private String tipo;
+	
 	// Constructor por defecto
     public ImagenesChoferes() {}
 
     // Constructor con parámetros
-    public ImagenesChoferes(Choferes chofer_id, byte[] imagen) {
+    public ImagenesChoferes(Choferes chofer_id, byte[] imagen, String tipo) {
         this.chofer_id = chofer_id;
         this.imagen = imagen;
+        this.tipo = tipo;
     }
 
 	public int getId() {
@@ -54,5 +57,13 @@ public class ImagenesChoferes {
 	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
 	}
-	
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 }

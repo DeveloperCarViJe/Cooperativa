@@ -2,6 +2,7 @@ package Controlador;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import javax.servlet.http.Part;
 import DAO.ChoferesDao;
 import DAO.ImagenesChoferesDao;
 import modelo.Choferes;
+import modelo.ImagenData;
 import modelo.ImagenesChoferes;
 
 /**
@@ -25,6 +27,7 @@ import modelo.ImagenesChoferes;
 public class ChoferesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ChoferesDao dao = new ChoferesDao();
+	ImagenesChoferesDao daoImagenesChoferesDao = new ImagenesChoferesDao();
 	int edad=0;
 	int movil=0;
        
@@ -61,7 +64,6 @@ public class ChoferesController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String accion = request.getParameter("accion");
-		System.out.println("Acción recibida: " + accion);
 		String movilParam = request.getParameter("movil");
         if (movilParam != null && !movilParam.isEmpty()) {
             try {
@@ -87,33 +89,37 @@ public class ChoferesController extends HttpServlet {
         String modelo = request.getParameter("modelo");
         String color = request.getParameter("color");
         String placa = request.getParameter("placa");
-        byte[] imageBytes = null;
-     // Obtiene la imagen desde el formulario
+        List<ImagenData> ImagenDataList = new ArrayList<>();
         InputStream inputStream = null;
         if ("Registrar".equals(accion)) {
             try {
-			        Part filePart = request.getPart("file");
-			        if (filePart != null) {
-			            inputStream = filePart.getInputStream();
-			            imageBytes = inputStream.readAllBytes();
-			        }
+	            	for (Part filePart : request.getParts()) {
+	            		String contentType = filePart.getContentType();
+	            		 if (contentType != null && contentType.startsWith("image/") && filePart.getSize() > 0) {
+	            			 String tipoImagen = daoImagenesChoferesDao.getFileName(filePart);
+				            inputStream = filePart.getInputStream();
+				            byte[] imageBytes = inputStream.readAllBytes();
+				            ImagenDataList.add(new ImagenData(imageBytes, tipoImagen));
+				        }
+	            	}
+            	}catch (IOException e) {
+            	    e.printStackTrace();
             	} finally {
             		if (inputStream != null) {
             	        inputStream.close(); 
             	    }
             	}
         }
-        //System.out.println(imageBytes);
         switch (accion) {        
             case "Registrar":
-            	Choferes choferesR = new Choferes(movil,nombres,apellidos,edad,email,estado,telefono,direccion,modelo,color,placa/*,imageBytes*/);
+            	Choferes choferesR = new Choferes(movil,nombres,apellidos,edad,email,estado,telefono,direccion,modelo,color,placa);
                 boolean registroExitosoFalse = dao.insertarChofer(choferesR);
                 request.setAttribute("registroExitosoFalse", registroExitosoFalse);
                 if (registroExitosoFalse) {
                     // Obtener el ID del chofer recién insertado
                     int choferId = choferesR.getId_chofer();
-                    ImagenesChoferesDao daoImagenesChoferesDao = new ImagenesChoferesDao();
-                    boolean imagenInsertada = daoImagenesChoferesDao.insertarImagen(choferId, imageBytes);
+                    
+                    boolean imagenInsertada = daoImagenesChoferesDao.insertarImagen(choferId, ImagenDataList);
                     request.setAttribute("registroExitosoFalse", imagenInsertada);
                 }
                 request.setAttribute("mostrarAlerta", "true");
@@ -136,7 +142,6 @@ public class ChoferesController extends HttpServlet {
             	break;
             
             case "ValidarMovil":
-            	System.out.println("ingreso validar movil");
                 boolean movilExiste = dao.movilExistente(movil);
                 
                 // Construcción manual de JSON

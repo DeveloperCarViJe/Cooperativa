@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>COOPERATIVA FASTMOVIL</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Choferes.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Usuario.css">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -63,8 +63,8 @@
 		                <td id="color-${chofer.id_chofer}">${chofer.color_vehiculo}</td>
 		                <td id="placa-${chofer.id_chofer}">${chofer.numero_placa}</td>
 		                <td style="text-align: center;">
-							<a href="#" class="editarBtnUsuarios" data-id="${chofer.id_chofer}" title="Editar">
-							    <i class="fas fa-edit fa-2x" style="margin-right: 10px; color: #5F9EA0;"></i>
+							<a href="${pageContext.request.contextPath}/Formularios/DetalleChofer.jsp" data-id="${chofer.id_chofer}" title="Editar">
+							    <i class="fas fa-user-circle fa-2x" style="margin-right: 10px; color: #5F9EA0;"></i>
 							</a>
 							<a href="#" class="eliminarBtnChoferes" data-id="${chofer.id_chofer}" title="Eliminar">
 							    <i class="fas fa-trash-alt fa-2x" style="color: #A52A2A;"></i>

@@ -117,10 +117,15 @@ function EliminarChoferes(idChofer) {
 }
 
 function updateFileName() {
-        const fileInput = document.getElementById('file');
-        const fileLabel = document.querySelector('.custom-file-label');
-        
-        if (fileInput.files.length > 0) {
-            fileLabel.textContent = fileInput.files[0].name;  // Actualiza el texto con el nombre del archivo
-        }
-    }
+		const input = document.getElementById('file');
+		const label = document.querySelector('.custom-file-label');
+		const files = input.files;
+		alert(files.length);
+		if (files.length > 1) {
+		    label.textContent = `${files.length} archivos seleccionados`;
+		} else if (files.length === 1) {
+		    label.textContent = files[0].name;
+		} else {
+		    label.textContent = 'Selecciona imagen';
+		}
+}

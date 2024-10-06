@@ -20,7 +20,6 @@
             <div class="form-group row d-flex justify-content-center align-items-center position-relative">
 			    <div class="col-sm-8 text-center">
 			        <h2 class="m-0">REGISTRO DE CHOFERES</h2>
-			        <p id="alertaMovil"></p>
 			    </div>
 			    <div class="position-absolute" style="top: 0; right: 10px;">
 			            <div id="alertRegistroChofer" style="display: ${mostrarAlerta ? 'block' : 'none'};">
@@ -40,79 +39,80 @@
 			</div>
             <div class="row">
             	<div class="col-md-7">
-		            <form id="formRegistroChoferes" action="/cooperativaFastmovil/ChoferesController" method="post" enctype="multipart/form-data">
-						<div class="form-section mb-4">
-						    <h3>DATOS CHOFER</h3>
-						    <div class="form-group row">
-						        <label for="movil" class="col-sm-2 col-form-label">MOVIL:</label>
-						        <div class="col-sm-2">
-						            <input type="text" class="form-control" id="movil" name="movil" maxlength="5" required>
-						        </div>
-						    </div>
-						    <div class="form-group row">
-						        <label for="nombres" class="col-sm-2 col-form-label">NOMBRES:</label>
-						        <div class="col-sm-4">
-						            <input type="text" class="form-control" id="nombres" name="nombres" maxlength="50" required>
-						        </div>
-						        <label for="apellidos" class="col-sm-2 col-form-label">APELLIDOS:</label>
-						        <div class="col-sm-4">
-						            <input type="text" class="form-control" id="apellidos" name="apellidos" maxlength="50" required>
-						        </div>
-						    </div>
-						    <div class="form-group row">
-						        <label for="edad" class="col-sm-2 col-form-label">EDAD:</label>
-						        <div class="col-sm-4">
-						            <input type="text" class="form-control" id="edad" name="edad" maxlength="50" required>
-						        </div>
-						        <label for="email" class="col-sm-2 col-form-label">EMAIL:</label>
-						        <div class="col-sm-4">
-						            <input type="email" class="form-control" id="email" name="email" maxlength="50" required>
-						        </div>
-						    </div>
-						    <div class="form-group row">
-						        <label for="telefono" class="col-sm-2 col-form-label">TELEFONO:</label>
-						        <div class="col-sm-4">
-						            <input type="text" class="form-control" id="telefono" name="telefono" maxlength="50" required>
-						        </div>
-						        <label for="direccion" class="col-sm-2 col-form-label">DIRECCION:</label>
-						        <div class="col-sm-4">
-						            <input type="text" class="form-control" id="direccion" name="direccion" maxlength="50" required>
-						        </div>
-							</div>
-							<h3>DATOS VEHICULO</h3>
-							<div class="form-group row">
-						        <label for="modelo" class="col-sm-2 col-form-label">MODELO:</label>
-						        <div class="col-sm-4">
-						            <input type="text" class="form-control" id="modelo" name="modelo" maxlength="50" required>
-						        </div>
-						        <label for="color" class="col-sm-2 col-form-label">COLOR:</label>
-						        <div class="col-sm-4">
-						            <input type="text" class="form-control" id="color" name="color" maxlength="50" required>
-						        </div>
-						        <label for="placa" class="col-sm-2 col-form-label">PLACA:</label>
-						        <div class="col-sm-4">
-						            <input type="text" class="form-control" id="placa" name="placa" maxlength="50" required>
-						            <input type="hidden" name="accion" value="Registrar">
-						        </div>
-						        <label for="placa" class="col-sm-2 col-form-label">FOTO:</label>
-						         <div class="col-sm-4">
-							        <div class="custom-file">
-									    <input type="file" class="custom-file-input" id="file" name="file" accept="image/*" maxlength="50" required onchange="updateFileName()">
-									    <label class="custom-file-label" for="file">Selecciona imagen</label>
-									</div>
+			            <form id="formRegistroChoferes" action="/cooperativaFastmovil/ChoferesController" method="post" enctype="multipart/form-data">
+							<div class="form-section mb-4">
+							    <h3>DATOS CHOFER</h3>
+							    <div class="form-group row">
+							        <label for="movil" class="col-sm-2 col-form-label">MOVIL:</label>
+							        <div class="col-sm-2">
+							            <input type="text" class="form-control" id="movil" name="movil" maxlength="5" required>
+							        </div>
 							    </div>
+							    <div class="form-group row">
+							        <label for="nombres" class="col-sm-2 col-form-label">NOMBRES:</label>
+							        <div class="col-sm-4">
+							            <input type="text" class="form-control" id="nombres" name="nombres" maxlength="50" required>
+							        </div>
+							        <label for="apellidos" class="col-sm-2 col-form-label">APELLIDOS:</label>
+							        <div class="col-sm-4">
+							            <input type="text" class="form-control" id="apellidos" name="apellidos" maxlength="50" required>
+							        </div>
+							    </div>
+							    <div class="form-group row">
+							        <label for="edad" class="col-sm-2 col-form-label">EDAD:</label>
+							        <div class="col-sm-4">
+							            <input type="text" class="form-control" id="edad" name="edad" maxlength="50" required>
+							        </div>
+							        <label for="email" class="col-sm-2 col-form-label">EMAIL:</label>
+							        <div class="col-sm-4">
+							            <input type="email" class="form-control" id="email" name="email" maxlength="50" required>
+							        </div>
+							    </div>
+							    <div class="form-group row">
+							        <label for="telefono" class="col-sm-2 col-form-label">TELEFONO:</label>
+							        <div class="col-sm-4">
+							            <input type="text" class="form-control" id="telefono" name="telefono" maxlength="50" required>
+							        </div>
+							        <label for="direccion" class="col-sm-2 col-form-label">DIRECCION:</label>
+							        <div class="col-sm-4">
+							            <input type="text" class="form-control" id="direccion" name="direccion" maxlength="50" required>
+							        </div>
+								</div>
+								<h3>DATOS VEHICULO</h3>
+								<div class="form-group row">
+							        <label for="modelo" class="col-sm-2 col-form-label">MODELO:</label>
+							        <div class="col-sm-4">
+							            <input type="text" class="form-control" id="modelo" name="modelo" maxlength="50" required>
+							        </div>
+							        <label for="color" class="col-sm-2 col-form-label">COLOR:</label>
+							        <div class="col-sm-4">
+							            <input type="text" class="form-control" id="color" name="color" maxlength="50" required>
+							        </div>
+							        <label for="placa" class="col-sm-2 col-form-label">PLACA:</label>
+							        <div class="col-sm-4">
+							            <input type="text" class="form-control" id="placa" name="placa" maxlength="50" required>
+							            <input type="hidden" name="accion" value="Registrar">
+							        </div>
+							        <label for="placa" class="col-sm-2 col-form-label">FOTO:</label>
+							         <div class="col-sm-4">
+								        <div class="custom-file">
+										    <input type="file" class="custom-file-input" id="file" name="file[]" accept="image/*" maxlength="50" multiple required onchange="updateFileName()">
+										    <label class="custom-file-label" for="file">Selecciona imagen</label>
+										</div>
+								    </div>
+								</div>
 							</div>
-						</div>
-				        <div class="form-group row">
-							 <div class="col-sm-11 offset-sm-2 d-flex justify-content-center">
-							     <button type="submit" id="registrarChoferBtn" class="btn btn-secondary btn-lg px-4 py-2" name="accion" value="Registrar">REGISTRAR CHOFER</button>
-							 </div>
-						</div>
-		            </form>
+					        <div class="form-group row">
+								 <div class="col-sm-11 offset-sm-2 d-flex justify-content-center">
+								     <button type="submit" id="registrarChoferBtn" class="btn btn-secondary btn-lg px-4 py-2" name="accion" value="Registrar">REGISTRAR CHOFER</button>
+								 </div>
+							</div>
+			            </form>
 		          </div>
-					<div class="col-md-4 d-flex justify-content-end align-items-start" style="margin-top: 60px; margin-left: 90px;"> <!-- Ajusta el margen según necesites -->
-					    <img src="${pageContext.request.contextPath}/Imagenes/choferRegistro.png" alt="Logotipo de REgistro de Chofer" class="img-fluid" style="max-width: 300px; height: auto; max-height: 300px;"> <!-- Cambia max-height según necesites -->
-					</div>
+				  <!-- Imagen al lado derecho 
+			    <div class="col-md-5 text-center">
+			        <img src="${pageContext.request.contextPath}/Imagenes/choferRegistro.png" alt="Logotipo de Registro de Chofer" width="400">
+			    </div>-->
 	        </div>
         </div>
 </body>

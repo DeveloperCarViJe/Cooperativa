@@ -81,6 +81,7 @@ body {
     flex: 1;
     padding: 15px;
     margin-left: 200px; /* Ajusta el contenido para dejar espacio al menú fijo */
+    position: relative;
 }
 
 .contentregistro h2 {
@@ -91,6 +92,55 @@ body {
  .custom-width {
         max-width: 30px;
 }
+
+/* Estilo Pagina JSP Detalle Chofer */
+.contentregistroDetalleChofer {
+	display: flex;              /* Usar flexbox */
+    flex-direction: column;     /* Organiza el contenido en columna */
+    align-items: flex-start;        /* Centra el contenido horizontalmente */
+    padding: 15px;
+    margin-left: 200px; /* Ajusta este margen si es necesario */
+    position: relative;
+    width: calc(100% - 200px); /* Asegúrate de que el ancho sea correcto */
+}
+
+.h2-container-chofer{
+	width: 100%; /* Asegura que el texto ocupe el 100% del ancho disponible */
+    text-align: center; /* Centra el texto */
+    font-family: "a r i a l", serif;
+}
+
+.h3-container-chofer {
+    display: flex; /* Permitir apilamiento vertical de h3 */
+    flex-direction: column; /* Alinear h3 en columna */
+    margin: 0; /* Eliminar margen superior por defecto */
+}
+
+.h3-container-chofer h3{
+	font-size: 120%;
+    font-family: "a r i a l", serif;
+}
+
+.bordered-section-Chofer {
+	border: 2px solid #ccc; /* Color y grosor del borde */
+    margin-right: 15px; /* Espaciado entre el borde y los h3 */
+    width: 300px; /* Ajusta el ancho del contenedor del borde */
+    align-self: flex-start; /* Alinea el contenedor a la izquierda */
+    display: flex; /* Hacer que el contenedor del borde sea un contenedor flexible */
+}
+
+.detalle-chofer-image {
+    width: 100%; /* Hacer que la imagen ocupe el 100% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.flex-container-detalle-chofer {
+    display: flex; /* Hacer que el contenedor de h3 y borde sea flexible */
+    align-items: center; /* Alinear elementos en la parte superior */
+    margin-top: 15px; /* Espaciado superior entre h2 y flex-container */
+    justify-content: flex-start; /* Asegura que todo esté alineado a la izquierda */
+}
+
 /* Estilos de las secciones del formulario */
 .form-section {
 	margin-bottom: 30px; /* Aumenta el espacio externo entre secciones */
@@ -116,10 +166,37 @@ body {
 .form-section input[type="text"],
 .form-section input[type="email"],
 .form-section input[type="number"] {
-    width: 100%;
-    padding: 6px;
-    margin-bottom: 5px;
+ 	width: 100%;
+    padding: 2px;
+    margin-bottom: 1px;
     border: 2px solid #ccc;
     border-radius: 2px;
     
+}
+
+/*Estilo tabla */
+.table {
+    table-layout: fixed; /* Mantiene el tamaño de la tabla */
+    width: 60%; /* Ajusta el ancho de la tabla */
+    margin: auto; /* Centra la tabla en la página */
+}
+
+.table th, .table td {
+    width: 100px; /* Establece un ancho fijo para las celdas */
+    overflow: hidden; /* Asegura que el contenido no desborde */
+    text-overflow: ellipsis; /* Muestra '...' si el texto es demasiado largo */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    font-size: 15px; /* Ajusta este valor según lo que necesites */
+}
+
+.table input {
+    width: 90%; /* Ajusta el ancho de los inputs */
+    box-sizing: border-box; /* Incluye padding y borde en el cálculo del ancho */
+    padding: 5px; /* Agrega padding para mejor apariencia */
+    font-size: 15px; /* Ajusta el tamaño de la fuente de los inputs */
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
 }
