@@ -18,24 +18,46 @@
      <div class="contentregistroDetalleChofer">
    	    <jsp:include page="/Menu.jsp" />
     	<div class="h2-container-chofer">
-			<h2>DETALLE CHOFER - MOVIL 2</h2>
+			<h2>DETALLE CHOFER - MOVIL <%= request.getAttribute("movil") %></h2>
 		</div>
 		<div class="flex-container-detalle-chofer">
 			<div class="bordered-section-Chofer"> <!-- Sección con borde -->
 	            <img src="${pageContext.request.contextPath}/Imagenes/usuarioRegistro.png" alt="Logotipo de Taxi en la pantalla principal" class="detalle-chofer-image">
 	        </div>
 	        <div class="h3-container-chofer">
-		        <h3>NOMBRES: </h3>
-		        <h3>APELLIDOS: </h3>
-		        <h3>EDAD: </h3>
-		        <h3>EMAIL: </h3>
-		        <h3>TELEFONO: </h3>
-		        <h3>DIRECCION: </h3>
-		        <h3>MODELO VEHICULO: </h3>
-		        <h3>NUMERO PLACA: </h3>
-		        <h3>COLOR VEHICULO: </h3>
-		        <h3>FECHA INGRESO: </h3>
-		    </div>
+			    <c:forEach var="chofer" items="${choferes}">
+			        <div class="h3-group">
+			            <h3 style="font-weight: bold;">NOMBRES: </h3><h3>${chofer.nombres}</h3>
+			        </div>
+			        <div class="h3-group">
+			            <h3 style="font-weight: bold;">APELLIDOS: </h3><h3>${chofer.apellidos}</h3>
+			        </div>
+			        <div class="h3-group">
+			            <h3 style="font-weight: bold;">EDAD: </h3><h3>${chofer.edad}</h3>
+			        </div>
+			        <div class="h3-group">
+			            <h3 style="font-weight: bold;">EMAIL: </h3><h3>${chofer.email}</h3>
+			        </div>
+			        <div class="h3-group">
+			            <h3 style="font-weight: bold;">TELEFONO: </h3><h3>${chofer.telefono}</h3>
+			        </div>
+			        <div class="h3-group">
+			            <h3 style="font-weight: bold;">DIRECCION: </h3><h3>${chofer.direccion}</h3>
+			        </div>
+			        <div class="h3-group">
+			            <h3 style="font-weight: bold;">MODELO VEHICULO: </h3><h3>${chofer.modelo}</h3>
+			        </div>
+			        <div class="h3-group">
+			            <h3 style="font-weight: bold;">NUMERO PLACA: </h3><h3>${chofer.numero_placa}</h3>
+			        </div>
+			        <div class="h3-group">
+			            <h3 style="font-weight: bold;">COLOR VEHICULO: </h3><h3>${chofer.color_vehiculo}</h3>
+			        </div>
+			        <div class="h3-group">
+			            <h3 style="font-weight: bold;">FECHA INGRESO: </h3>
+			        </div>
+			    </c:forEach>
+			</div>
 		</div>
 			<h2 style="margin-top: 20px; margin-left: 2px; margin-bottom: 8px; justify-content: flex-start; font-size: 120%; font-family: a r i a l, serif; font-weight: bold;">FOTOS DE LA UNIDAD</h2>
 			<div class="flex-container-detalle-chofer" style=" margin-top: 1px;">

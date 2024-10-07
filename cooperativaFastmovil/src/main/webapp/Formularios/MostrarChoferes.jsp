@@ -63,7 +63,7 @@
 		                <td id="color-${chofer.id_chofer}">${chofer.color_vehiculo}</td>
 		                <td id="placa-${chofer.id_chofer}">${chofer.numero_placa}</td>
 		                <td style="text-align: center;">
-							<a href="${pageContext.request.contextPath}/Formularios/DetalleChofer.jsp" data-id="${chofer.id_chofer}" title="Editar">
+							<a href="#" class="mostrarBtnChoferes" data-id="${chofer.id_chofer}" title="Editar">
 							    <i class="fas fa-user-circle fa-2x" style="margin-right: 10px; color: #5F9EA0;"></i>
 							</a>
 							<a href="#" class="eliminarBtnChoferes" data-id="${chofer.id_chofer}" title="Eliminar">

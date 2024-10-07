@@ -17,7 +17,6 @@ import DAO.ChoferesDao;
 import DAO.ImagenesChoferesDao;
 import modelo.Choferes;
 import modelo.ImagenData;
-import modelo.ImagenesChoferes;
 
 /**
  * Servlet implementation class ChoferesController
@@ -112,7 +111,7 @@ public class ChoferesController extends HttpServlet {
         }
         switch (accion) {        
             case "Registrar":
-            	Choferes choferesR = new Choferes(movil,nombres,apellidos,edad,email,estado,telefono,direccion,modelo,color,placa);
+            	Choferes choferesR = new Choferes(movil,nombres,apellidos,edad,email,estado,telefono,direccion,modelo,color,placa,null);
                 boolean registroExitosoFalse = dao.insertarChofer(choferesR);
                 request.setAttribute("registroExitosoFalse", registroExitosoFalse);
                 if (registroExitosoFalse) {

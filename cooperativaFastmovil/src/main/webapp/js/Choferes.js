@@ -22,12 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Evento para validar el movil existente
     const registrarChoferBtn = document.getElementById('registrarChoferBtn');
     if (registrarChoferBtn) {
-		console.log("Botón 'Registrar Chofer' encontrado"); 
         registrarChoferBtn.addEventListener('click', function(event) {
             event.preventDefault();
-			console.log("Evento click del botón registrado");
 			const movil = document.getElementById('movil').value;
-			console.log("Móvil ingresado:", movil);
 			const params = new URLSearchParams();
 			    params.append("accion", "ValidarMovil");
 			    params.append("movil", movil);
@@ -85,6 +82,17 @@ document.addEventListener("DOMContentLoaded", function() {
             alertElement.querySelector('.alert').classList.add('fade');
         }
     }, 3000);
+
+// Evento para mostrar el detalle del chofer
+	    const mostrarBtnChoferes = document.querySelectorAll('.mostrarBtnChoferes');
+		if (mostrarBtnChoferes) {
+			mostrarBtnChoferes.forEach(button => {
+			        button.addEventListener("click", function() {
+			            const idChofer = this.getAttribute("data-id");
+						window.location.href = '/cooperativaFastmovil/MostrarChoferes?idChofer=' + idChofer;
+			        });
+			    });			
+		}		
 });
 
 function EliminarChoferes(idChofer) {
@@ -120,7 +128,6 @@ function updateFileName() {
 		const input = document.getElementById('file');
 		const label = document.querySelector('.custom-file-label');
 		const files = input.files;
-		alert(files.length);
 		if (files.length > 1) {
 		    label.textContent = `${files.length} archivos seleccionados`;
 		} else if (files.length === 1) {

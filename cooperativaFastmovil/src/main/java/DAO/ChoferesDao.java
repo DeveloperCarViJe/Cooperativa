@@ -111,9 +111,28 @@ public class ChoferesDao {
         }
     }
     
+    public List<Choferes> obtenerchoferesID(int idChofer) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        List<Choferes> choferes = null;
+        try {
+            String hql = "FROM Choferes where estado = 'A' and id_chofer = :idChofer";
+            choferes = entityManager.createQuery(hql, Choferes.class)
+            						.setParameter("idChofer", idChofer)
+            						.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+        return choferes;
+    }
+    
     public static void closeEntityManagerFactory() {
         if (entityManagerFactory != null) {
             entityManagerFactory.close();
         }
     }
+
 }

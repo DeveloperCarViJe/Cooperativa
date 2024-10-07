@@ -111,14 +111,24 @@ body {
 }
 
 .h3-container-chofer {
-    display: flex; /* Permitir apilamiento vertical de h3 */
-    flex-direction: column; /* Alinear h3 en columna */
-    margin: 0; /* Eliminar margen superior por defecto */
+    display: flex;
+    flex-direction: column; /* Mantener los pares en columnas */
+    gap: 10px; /* Espacio entre los grupos */
 }
 
-.h3-container-chofer h3{
-	font-size: 120%;
-    font-family: "a r i a l", serif;
+.h3-group {
+    display: flex;
+    flex-direction: row; /* Asegurarnos de que los `h3` estén en fila */
+    align-items: center; /* Alinear verticalmente en el centro */
+    gap: 10px; /* Espacio entre los `h3` */
+    flex-wrap: nowrap; /* No permitir saltos de línea */
+}
+
+.h3-group h3 {
+    margin: 0;
+    font-size: 120%;
+    font-family: "Arial", serif;
+    white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
 }
 
 .bordered-section-Chofer {

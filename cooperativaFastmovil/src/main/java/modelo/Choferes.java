@@ -50,7 +50,7 @@ public class Choferes {
 		this.fecha_Salida = fecha_Salida;
 	}
 	
-	public Choferes(Integer movil, String nombres, String apellidos, Integer edad, String email, String estado, String telefono, String direccion, String modelo, String color_vehiculo, String numero_placa/*,byte[] fotos_vehiculo*/) {
+	public Choferes(Integer movil, String nombres, String apellidos, Integer edad, String email, String estado, String telefono, String direccion, String modelo, String color_vehiculo, String numero_placa, Date fecha_ingreso) {
 		this.movil = movil;
 		this.nombres = nombres;
 		this.apellidos = apellidos;
@@ -62,6 +62,7 @@ public class Choferes {
 		this.modelo = modelo;
 		this.color_vehiculo = color_vehiculo;
 		this.numero_placa = numero_placa;
+		this.Fecha_ingreso = fecha_ingreso;
 		//this.fotos_vehiculo = fotos_vehiculo;
 	}
 	
