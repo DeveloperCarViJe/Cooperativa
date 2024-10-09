@@ -132,16 +132,21 @@ body {
 }
 
 .bordered-section-Chofer {
-	border: 2px solid #ccc; /* Color y grosor del borde */
-    margin-right: 15px; /* Espaciado entre el borde y los h3 */
-    width: 300px; /* Ajusta el ancho del contenedor del borde */
+    border: 0px solid #ccc; /* Color y grosor del borde */
+    margin-right: 15px; /* Espaciado entre el borde y otros elementos */
+    width: 300px; /* Ancho fijo del contenedor */
+    height: 300px; /* Alto fijo del contenedor */
+    overflow: hidden;
     align-self: flex-start; /* Alinea el contenedor a la izquierda */
-    display: flex; /* Hacer que el contenedor del borde sea un contenedor flexible */
+    display: flex; /* Hacer que el contenedor sea flexible */
+    justify-content: center; /* Centrar la imagen horizontalmente */
+    align-items: center; /* Centrar la imagen verticalmente */
 }
 
 .detalle-chofer-image {
-    width: 100%; /* Hacer que la imagen ocupe el 100% del ancho del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
+    max-width: 100%; /* La imagen nunca será más ancha que el contenedor */
+    max-height: 100%; /* La imagen nunca será más alta que el contenedor */
+    object-fit: cover; /* Ajustar la imagen dentro del contenedor sin distorsión */
 }
 
 .flex-container-detalle-chofer {

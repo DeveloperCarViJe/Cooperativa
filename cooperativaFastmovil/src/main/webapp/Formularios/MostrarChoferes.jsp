@@ -52,7 +52,7 @@
                     <th>ACCION</th>
                 </tr>
             </thead>
-            <tbody >
+            <tbody class="text-center">
                 <c:forEach var="chofer" items="${choferes}">
                     <tr id="fila-${chofer.id_chofer}">
                     	<td id="movil-${chofer.id_chofer}">${chofer.movil}</td>

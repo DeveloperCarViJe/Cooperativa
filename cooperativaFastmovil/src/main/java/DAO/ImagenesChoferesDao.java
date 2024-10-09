@@ -67,7 +67,32 @@ public class ImagenesChoferesDao {
                 }
             }
         }
-        return null; // Si no se encuentra el nombre del archivo
+    
+        return null;
+    }
+	
+	public List<ImagenesChoferes> obtenerImagenesID(int idChofer) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        List<ImagenesChoferes> imagenesChoferes = null;
+        try {
+            String hql = "FROM ImagenesChoferes where id_chofer = :idChofer";
+            imagenesChoferes = entityManager.createQuery(hql, ImagenesChoferes.class)
+            						.setParameter("idChofer", idChofer)
+            						.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+        return imagenesChoferes;
+    }
+	
+	public static void closeEntityManagerFactory() {
+        if (entityManagerFactory != null) {
+            entityManagerFactory.close();
+        }
     }
 	
 }

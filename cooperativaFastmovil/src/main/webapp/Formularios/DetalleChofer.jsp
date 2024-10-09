@@ -22,7 +22,7 @@
 		</div>
 		<div class="flex-container-detalle-chofer">
 			<div class="bordered-section-Chofer"> <!-- Sección con borde -->
-	            <img src="${pageContext.request.contextPath}/Imagenes/usuarioRegistro.png" alt="Logotipo de Taxi en la pantalla principal" class="detalle-chofer-image">
+	            <img src="data:${tipoImagen};base64,${imagenPerfil}" alt="Imagen Perfil Chofer" class="detalle-chofer-image">
 	        </div>
 	        <div class="h3-container-chofer">
 			    <c:forEach var="chofer" items="${choferes}">
@@ -54,22 +54,18 @@
 			            <h3 style="font-weight: bold;">COLOR VEHICULO: </h3><h3>${chofer.color_vehiculo}</h3>
 			        </div>
 			        <div class="h3-group">
-			            <h3 style="font-weight: bold;">FECHA INGRESO: </h3>
+			            <h3 style="font-weight: bold;">FECHA INGRESO: </h3><h3><%= request.getAttribute("fechaFormateada") %></h3>
 			        </div>
 			    </c:forEach>
 			</div>
 		</div>
 			<h2 style="margin-top: 20px; margin-left: 2px; margin-bottom: 8px; justify-content: flex-start; font-size: 120%; font-family: a r i a l, serif; font-weight: bold;">FOTOS DE LA UNIDAD</h2>
-			<div class="flex-container-detalle-chofer" style=" margin-top: 1px;">
-				<div class="bordered-section-Chofer">
-		            <img src="${pageContext.request.contextPath}/Imagenes/carro1.jpg" alt="Logotipo de Taxi en la pantalla principal" class="detalle-chofer-image">
-		        </div>
-		         <div class="bordered-section-Chofer">
-			        <img src="${pageContext.request.contextPath}/Imagenes/carro2.jpg" alt="Otra imagen" class="detalle-chofer-image">
-			    </div>
-			    <div class="bordered-section-Chofer">
-			        <img src="${pageContext.request.contextPath}/Imagenes/carro3.jpg" alt="Otra imagen" class="detalle-chofer-image">
-			    </div>
+			<div class="flex-container-detalle-chofer" style=" margin-top: 0px;">
+				<c:forEach var="mostrarImagenV" items="${mostrarImagenV}">
+					<div class="bordered-section-Chofer">
+			            <img src="data:${mostrarImagenV.tipo_imagen};base64,${mostrarImagenV.imagen}" alt="Imagen del vehiculo" class="detalle-chofer-image">
+			        </div>
+			    </c:forEach>  
 			</div>
     </div>
 </body>
