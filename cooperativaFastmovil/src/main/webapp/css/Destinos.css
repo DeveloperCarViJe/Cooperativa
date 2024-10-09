@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh; /* El body ocupa toda la altura de la ventana */
+}
+
+.menu {
+ 	position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #37474f; /* Fondo más oscuro */
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Sombra sutil para darle profundidad */
+}
+
+.menu h2 {
+	font-family: "Homer Simpson UI";
+    text-align: center;
+    color: #ecf0f1; /* Color blanco para el título */
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #000000; /* Línea decorativa debajo del título */
+    padding-bottom: 10px;
+    padding: 15px 20px;
+}
+
+.menu a {
+	font-family: "Homer Simpson UI";
+    display: block;
+    padding: 15px 20px; /* Más espacio en los enlaces */
+    text-decoration: none;
+    color: #ecf0f1; /* Color blanco para mejor contraste */
+    margin-bottom: 10px;
+    font-size: 18px; /* Tamaño de fuente más grande */
+    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Efecto suave al hacer hover */
+}
+
+.menu a:hover {
+    background-color: #000000; /* Color verde para el hover */
+    padding-left: 30px; /* Efecto de desplazamiento a la derecha */
+    text-decoration: none;
+    color: #ecf0f1;
+}
+
+/* Estilos de SubMenu */
+.menu-item {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #ecf0f1;
+    margin-bottom: 5px;
+}
+
+.submenu {
+    padding-left: 20px; /* Indent the submenu */
+    margin-bottom: 5px;
+}
+
+.submenu a {
+    color: #ecf0f1; /* Color for submenu items */
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.contentDetalleDestinos {
+	display: flex;              /* Usar flexbox */
+    flex-direction: column;     /* Organiza el contenido en columna */
+    align-items: flex-start;        /* Centra el contenido horizontalmente */
+    padding: 15px;
+    margin-left: 200px; /* Ajusta este margen si es necesario */
+    position: relative;
+    width: calc(100% - 200px); /* Asegúrate de que el ancho sea correcto */
+}
+
+.h2-container-destinos{
+	width: 100%; /* Asegura que el texto ocupe el 100% del ancho disponible */
+    text-align: center; /* Centra el texto */
+    font-family: "a r i a l", serif;
+}
+
+/* Estilos de las secciones del formulario */
+.form-section {
+	margin-bottom: 80px; /* Aumenta el espacio externo entre secciones */
+    padding: 20px; /* Aumenta el espacio interno */
+    border: 2px solid #ccc; /* Borde gris de 2px */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 300%; /* O puedes usar un valor fijo como 600px */
+    max-width: 1000px; /* Máximo ancho para que no sea demasiado grande */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+}
+
+.form-section h3 {
+    margin-bottom: 8px;
+    color: #333; /* Color del encabezado */
+    font-size: 20px;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-family: "a r i a l", serif;
+}
+
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="number"] {
+ 	width: 100%;
+    padding: 1px;
+    margin-bottom: 1px;
+    border: 2px solid #ccc;
+    border-radius: 2px;
+    
+}
+
+.flex-container-detalle-chofer {
+    display: flex; /* Hacer que el contenedor de h3 y borde sea flexible */
+    align-items: center; /* Alinear elementos en la parte superior */
+    margin-top: 3px; /* Espaciado superior entre h2 y flex-container */
+    justify-content: flex-end; /* Asegura que todo esté alineado a la izquierda */
+}

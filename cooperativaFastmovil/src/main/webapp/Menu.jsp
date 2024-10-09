@@ -10,6 +10,6 @@
         <a href="${pageContext.request.contextPath}/Formularios/RegistroChoferes.jsp">REGISTRAR <i class="fas fa-user-plus ml-2"></i></a>
         <a href="${pageContext.request.contextPath}/ChoferesController">MOSTRAR <i class="fas fa-list ml-2"></i></a>
     </div>
-    <a href="services.jsp">DESTINOS</a>
+    <a href="${pageContext.request.contextPath}/Formularios/RegistroDetalleDestino.jsp">DESTINOS <i class="fas fa-map-marker-alt ml-2"></i></a>
     <a href="contact.jsp">CARRERAS</a>
 </div>
