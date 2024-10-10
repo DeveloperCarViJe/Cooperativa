@@ -19,5 +19,5 @@ set estado = 'A';
 commit;
 
 ----Choferes----
-SELECT * FROM ImagenesChoferes;
+SELECT * FROM ImagenesChoferes a where a.id_chofer = '37';
 DROP TABLE ImagenesChoferes;
