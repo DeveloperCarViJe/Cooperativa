@@ -9,7 +9,7 @@
         <!-- Configuración de la conexión a la base de datos -->
         <properties>
             <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@142.44.196.211:1521:orcl"/>
             <property name="javax.persistence.jdbc.user" value="COOPERATIVAFASTMOVIL"/>
             <property name="javax.persistence.jdbc.password" value="Admin123"/>
 

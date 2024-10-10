@@ -2,18 +2,20 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    min-height: 100vh; /* El body ocupa toda la altura de la ventana */
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .menu {
- 	position: fixed;
+    position: fixed;
     left: 0;
     top: 0;
-    width: 200px;
+    width: 200px; /* Fija el ancho del menú */
     height: 100%;
-    background-color: #37474f; /* Fondo más oscuro */
+    background-color: #37474f;
     padding-top: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Sombra sutil para darle profundidad */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 10; /* Se asegura de que el menú esté siempre encima */
 }
 
 .menu h2 {
@@ -66,13 +68,12 @@ body {
 }
 
 .contentDetalleDestinos {
-	display: flex;              /* Usar flexbox */
-    flex-direction: column;     /* Organiza el contenido en columna */
-    align-items: flex-start;        /* Centra el contenido horizontalmente */
+	margin-left: 200px; /* Asegura que el contenido respete el ancho del menú */
     padding: 15px;
-    margin-left: 200px; /* Ajusta este margen si es necesario */
+    width: calc(100% - 200px); /* Asegura que el contenido no ocupe más del ancho restante */
+    box-sizing: border-box; /* Incluye padding y border en el cálculo del width */
     position: relative;
-    width: calc(100% - 200px); /* Asegúrate de que el ancho sea correcto */
+    overflow-x: hidden; /* Para evitar el desbordamiento horizontal */
 }
 
 .h2-container-destinos{
@@ -116,8 +117,8 @@ body {
 }
 
 .flex-container-detalle-chofer {
-    display: flex; /* Hacer que el contenedor de h3 y borde sea flexible */
-    align-items: center; /* Alinear elementos en la parte superior */
-    margin-top: 3px; /* Espaciado superior entre h2 y flex-container */
-    justify-content: flex-end; /* Asegura que todo esté alineado a la izquierda */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribuye los elementos dentro del flex */
+    margin-top: 3px;
 }

@@ -22,7 +22,7 @@
 		</div>
 		     <div class="flex-container-detalle-chofer">
 			            <form id="formRegistroChoferes" action="/cooperativaFastmovil/ChoferesController" method="post" enctype="multipart/form-data">
-							<div class="form-section mb-4">
+							<div class="form-section">
 							    <div class="form-group row">
 							        <label for="origen" class="col-sm-1 col-form-label">ORIGEN:</label>
 							        <div class="col-sm-5">
