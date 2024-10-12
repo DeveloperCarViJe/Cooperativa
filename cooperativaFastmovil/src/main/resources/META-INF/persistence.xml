@@ -8,8 +8,8 @@
         
         <!-- Configuración de la conexión a la base de datos -->
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@142.44.196.211:1521:orcl"/>
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
             <property name="javax.persistence.jdbc.user" value="COOPERATIVAFASTMOVIL"/>
             <property name="javax.persistence.jdbc.password" value="Admin123"/>
 
@@ -18,7 +18,6 @@
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.connection.provider_class" value="com.zaxxer.hikari.hibernate.HikariConnectionProvider"/>
-            <property name="hibernate.connection.datasource" value="java:comp/env/jdbc/yourDataSource"/>
             
             <!-- Configuración de HikariCP -->
             <property name="hibernate.hikari.minimumIdle" value="5" />
