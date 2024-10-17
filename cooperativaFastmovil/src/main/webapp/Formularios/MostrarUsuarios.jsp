@@ -18,7 +18,7 @@
 	<jsp:include page="/Menu.jsp" />
 	<div class="contentregistro">
         <div class="form-group row d-flex justify-content-center align-items-center position-relative">
-			    <div class="col-sm-8 text-center">
+			    <div class="h2-container-mostrar-usuario">
 			        <h2 class="m-0">MOSTRAR USUARIOS</h2>
 			    </div>
 			    <div class="position-absolute" style="top: -10px; right: 10px;">

@@ -142,12 +142,7 @@ public class Choferes {
 	public void setNumero_placa(String numero_placa) {
 		this.numero_placa = numero_placa;
 	}
-	/*public byte[] getFotos_vehiculo() {
-		return fotos_vehiculo;
-	}
-	public void setFotos_vehiculo(byte[] fotos_vehiculo) {
-		this.fotos_vehiculo = fotos_vehiculo;
-	}*/
+	
 	public Date getFecha_ingreso() {
 		return Fecha_ingreso;
 	}

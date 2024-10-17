@@ -6,19 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>COOPERATIVA FASTMOVIL</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Usuario.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Choferes.css">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/Choferes.js"></script>
 </head>
 <body>
-	<jsp:include page="/Menu.jsp" />
-	<div class="contentregistro">
+<jsp:include page="/Menu.jsp" />
+<div class="contentregistro">
         <div class="form-group row d-flex justify-content-center align-items-center position-relative">
-			    <div class="col-sm-8 text-center">
+			    <div class="h2-container-mostrar-chofer">
 			        <h2 class="m-0">MOSTRAR CHOFERES</h2>
 			    </div>
 			    <div class="position-absolute" style="top: -10px; right: 10px;">
@@ -74,6 +71,6 @@
                 </c:forEach>
             </tbody>
         </table>
-    </div>
+</div>
 </body>
 </html>
