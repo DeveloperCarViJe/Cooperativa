@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.UsuariosDao;
 import modelo.Usuarios;
@@ -113,6 +114,13 @@ public class UsuariosController extends HttpServlet {
                 response.setCharacterEncoding("UTF-8");
                 String jsonResponseEliminar = "{\"accion\": " + accionExitosaFalseE + "}";
                 response.getWriter().write(jsonResponseEliminar);
+            	break;
+            
+            case "Ingresar":
+            	boolean UsuarioExiste = dao.UsuarioExistente(usuario, password);
+            	HttpSession session = request.getSession();
+                session.setAttribute("user", usuario); // Establecer el usuario en la sesión
+                response.sendRedirect(request.getContextPath() + "/Home.jsp"); // Redirigir a Home.jsp
             	break;
                 
             default:

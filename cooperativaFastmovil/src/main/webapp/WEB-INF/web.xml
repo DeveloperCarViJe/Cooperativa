@@ -3,7 +3,19 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    <filter>
+	    <filter-name>AuthFilter</filter-name>
+	    <filter-class>Controlador.AuthFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>AuthFilter</filter-name>
+	    <url-pattern>/Home.jsp</url-pattern> <!-- Cambia esto a las URLs que desees proteger -->
+	    <url-pattern>/Menu.jsp</url-pattern> <!-- Cambia esto a las URLs que desees proteger -->
+	    <url-pattern>/Formularios/*</url-pattern> <!-- También puedes usar un patrón como este -->
+	</filter-mapping>     
+	
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>Login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

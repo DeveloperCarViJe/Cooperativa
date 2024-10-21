@@ -97,7 +97,7 @@ body, html {
     overflow: auto; /* permite el desplazamiento */
 }
 
-.h2-container-destinos{
+.h2-container-destinos, .h2-container-mostrar-chofer{
 	width: 100%; /* Asegura que el texto ocupe el 100% del ancho disponible */
     text-align: center; /* Centra el texto */
     font-family: "a r i a l", serif;

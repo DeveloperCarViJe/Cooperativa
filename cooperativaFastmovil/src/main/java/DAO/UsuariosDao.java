@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import modelo.Choferes;
 import modelo.Usuarios;
 
 
@@ -25,8 +26,8 @@ public class UsuariosDao {
             usuario.setNombres(usuarios.getNombres().toUpperCase());
             usuario.setApellidos(usuarios.getApellidos().toUpperCase());
             usuario.setEdad(usuarios.getEdad());
-            usuario.setUsuario(usuarios.getUsuario().toUpperCase());
-            usuario.setPassword(usuarios.getPassword().toUpperCase());
+            usuario.setUsuario(usuarios.getUsuario());
+            usuario.setPassword(usuarios.getPassword());
             usuario.setEmail(usuarios.getEmail().toUpperCase());
             usuario.setEstado(usuarios.getEstado().toUpperCase());
             usuario.setTelefono(usuarios.getTelefono());
@@ -120,6 +121,22 @@ public class UsuariosDao {
             }
             e.printStackTrace();
             return false;
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+    }
+    
+    public boolean UsuarioExistente(String usuario, String pass) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            String jpql = "SELECT c FROM Usuarios c WHERE c.usuario = :usuario and c.password = :pass and c.estado = 'A'";
+            List<Usuarios> resultado = entityManager.createQuery(jpql, Usuarios.class)
+                                                    .setParameter("usuario", usuario)
+                                                    .setParameter("pass", pass)
+                                                    .getResultList();
+            return !resultado.isEmpty(); // Devuelve true si el usuario ya existe
         } finally {
             if (entityManager != null) {
                 entityManager.close();

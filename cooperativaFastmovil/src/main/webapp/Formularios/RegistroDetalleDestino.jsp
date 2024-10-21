@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>COOPERATIVA FASTMOVIL</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Formato.css">
-<script src="${pageContext.request.contextPath}/js/Formato.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Destinos.css">
+<script src="${pageContext.request.contextPath}/js/Destinos.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
