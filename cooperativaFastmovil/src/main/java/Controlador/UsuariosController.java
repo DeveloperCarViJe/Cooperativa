@@ -118,9 +118,16 @@ public class UsuariosController extends HttpServlet {
             
             case "Ingresar":
             	boolean UsuarioExiste = dao.UsuarioExistente(usuario, password);
+            	if(UsuarioExiste) {
+            	Usuarios usuarioLogueado = dao.UsuarioRol(usuario, password);
             	HttpSession session = request.getSession();
                 session.setAttribute("user", usuario); // Establecer el usuario en la sesión
+                session.setAttribute("rol", usuarioLogueado.getRol());
                 response.sendRedirect(request.getContextPath() + "/Home.jsp"); // Redirigir a Home.jsp
+            	}else {
+            	request.setAttribute("validacionLogin", "true");
+            	request.getRequestDispatcher("/Login.jsp").forward(request, response);
+            	}
             	break;
                 
             default:

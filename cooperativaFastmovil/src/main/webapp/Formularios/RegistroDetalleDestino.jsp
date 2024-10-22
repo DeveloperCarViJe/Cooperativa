@@ -59,6 +59,30 @@
                 </div>
             </div>
         </form>
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                	<th>ORIGEN</th>
+                    <th>DESTINO</th>
+                    <th>VALOR</th>
+                    <th>ACCION</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <c:forEach var="chofer" items="${choferes}">
+                    <tr id="fila-${chofer.id_chofer}">
+                    	<td id="movil-${chofer.id_chofer}">${chofer.movil}</td>
+                        <td id="nombres-${chofer.id_chofer}">${chofer.nombres}</td>
+		                <td id="apellidos-${chofer.id_chofer}">${chofer.apellidos}</td>
+		                <td style="text-align: center;">
+							<a href="#" class="editarOrigenDestino" data-id="${chofer.id_chofer}" title="Editar">
+							   <i class="fas fa-edit fa-2x" style="margin-right: 10px; color: #5F9EA0;"></i>
+							</a>
+		                </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
 </div>
 </body>
 </html>

@@ -13,8 +13,13 @@ body, html {
     height: 100%;
     background-color: #37474f;
     padding-top: 20px;
+    padding-bottom: 20px; /* Añadir espacio en la parte inferior */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
     z-index: 10; /* Se asegura de que el menú esté siempre encima */
+    
+    display: flex; /* Activar flexbox */
+    flex-direction: column; /* Organizar hijos en una columna */
+    justify-content: space-between; /* Espaciado entre los elementos */
 }
 
 .content {
@@ -61,8 +66,9 @@ label {
 }
 
 .firma-texto {
-    font-family: 'Roboto', sans-serif; /* Cambia la fuente si lo deseas */
-    font-size: 12px; /* Ajusta el tamaño de la fuente */
-    color: #777; /* Cambia el color del texto si lo deseas */
-    margin-top: auto; /* Espaciado superior */
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: #777;
+    text-align: center; /* Centra el texto */
+    margin-top: auto; /* Asegura que se empuje hacia el fondo */
 }

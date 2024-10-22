@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>COOPERATIVA FASTMOVIL</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Login.css">
-<script src="${pageContext.request.contextPath}/js/Formato.js"></script>
+<script src="${pageContext.request.contextPath}/js/Destinos.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -18,6 +19,20 @@
 	</div>
 </div>
 <div class="login">
+	<div class="position-absolute" style="top: 0; right: 10px;">
+		<c:if test="${not empty validacionLogin}">
+			<div id="alertRegistroDestino">
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			    	<strong></strong> 
+			        <c:choose>
+			        	<c:when test="${validacionLogin == 'true'}">
+			        		Usuario no Encontrado.
+			        	</c:when>
+			        </c:choose>
+			    </div>
+			</div>
+		</c:if>
+	</div>
   	<div class="h2-login">
 		<h2><i class="fas fa-user fa-4x"></i></h2>
 	</div>
@@ -42,10 +57,8 @@
         	</div>
      	</div>
      </form>
-     <div class="form-group row mt-5 text-center">
-     	<div class="col-sm-12">
-        	<p class="firma-texto">© 2024 JC DEVELOPER. Todos los derechos reservados.</p>
-        </div>
+     <div class="firma-texto">
+        © 2024 JC DEVELOPER. Todos los derechos reservados.
      </div>
 </div> 
 </body>

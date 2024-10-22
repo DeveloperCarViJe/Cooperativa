@@ -105,7 +105,7 @@ body, html {
 
 /* Estilo para la section */
 .form-section {
-    margin-bottom: 80px; /* Aumenta el espacio externo entre secciones */
+    margin-bottom: 50px; /* Aumenta el espacio externo entre secciones */
     padding: 20px; /* Aumenta el espacio interno */
     border: 2px solid #ccc; /* Borde gris de 2px */
     border-radius: 5px; /* Bordes redondeados */
@@ -127,4 +127,18 @@ body, html {
     .col-sm-1, .col-sm-5, .col-sm-10 {
         flex: 0 0 100%; /* Hace que las columnas ocupen todo el ancho en pantallas pequeñas */
     }
+}
+
+/*Estilo tabla */
+.table {
+	width: 70%; /* Ajusta el ancho de la tabla */
+    max-width: 1000px; /* Define un ancho máximo si lo deseas */
+    margin: 20px 0 20px 0; /* Espacio superior e inferior; sin margen lateral */
+    float: left; /* Alinea la tabla a la izquierda */
+}
+
+.table th, .table td {
+    padding: 5px 10px; /* Reduce el padding */
+    font-size: 12px; /* Ajusta el tamaño de la fuente */
+    font-family: "a r i a l", serif;
 }

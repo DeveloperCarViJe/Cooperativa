@@ -144,6 +144,22 @@ public class UsuariosDao {
         }
     }
     
+    public Usuarios UsuarioRol(String usuario, String pass) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            String jpql = "SELECT c FROM Usuarios c WHERE c.usuario = :usuario and c.password = :pass and c.estado = 'A'";
+            List<Usuarios> resultado = entityManager.createQuery(jpql, Usuarios.class)
+                                                    .setParameter("usuario", usuario)
+                                                    .setParameter("pass", pass)
+                                                    .getResultList();
+            return resultado.isEmpty() ? null : resultado.get(0);
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+    }
+    
     public static void closeEntityManagerFactory() {
         if (entityManagerFactory != null) {
             entityManagerFactory.close();
