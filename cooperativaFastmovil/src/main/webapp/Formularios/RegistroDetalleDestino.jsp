@@ -59,6 +59,12 @@
                 </div>
             </div>
         </form>
+		<div class="buscar-destino row justify-content-end">
+		    <label for="buscarDestino" class="col-form-label align-self-center mr-2">BUSCAR:</label>
+		    <div class="col-sm-3">
+		        <input type="text" class="form-control" id="buscarDestino" name="buscarDestino" maxlength="200" required>
+		    </div>
+		</div>
         <table class="table">
             <thead>
                 <tr class="text-center">

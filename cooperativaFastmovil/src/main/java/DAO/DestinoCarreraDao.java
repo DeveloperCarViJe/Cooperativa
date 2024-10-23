@@ -1,10 +1,13 @@
 package DAO;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import modelo.Choferes;
 import modelo.DestinoCarrera;
 
 public class DestinoCarreraDao {
@@ -35,6 +38,25 @@ public class DestinoCarreraDao {
                 entityManager.close();
             }
         }
+    }
+    
+    public List<DestinoCarrera> obtenerDestinoCarreraFiltro(String filtro) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        List<DestinoCarrera> desiDestinoCarreras = null;
+        try {
+        	System.out.println("ingreso a buscar DAO");
+            String hql = "from DestinoCarrera c where upper(c.Destino) like upper(:filtro) order by c.valor asc";
+            desiDestinoCarreras = entityManager.createQuery(hql, DestinoCarrera.class)
+            								   .setParameter("filtro", "%" + filtro + "%")
+            								   .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+        return desiDestinoCarreras;
     }
     
     public static void closeEntityManagerFactory() {
