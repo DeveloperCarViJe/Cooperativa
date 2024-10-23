@@ -44,7 +44,6 @@ public class DestinoCarreraDao {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         List<DestinoCarrera> desiDestinoCarreras = null;
         try {
-        	System.out.println("ingreso a buscar DAO");
             String hql = "from DestinoCarrera c where upper(c.Destino) like upper(:filtro) order by c.valor asc";
             desiDestinoCarreras = entityManager.createQuery(hql, DestinoCarrera.class)
             								   .setParameter("filtro", "%" + filtro + "%")

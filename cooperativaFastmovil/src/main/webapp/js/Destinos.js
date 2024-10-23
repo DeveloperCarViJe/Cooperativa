@@ -52,7 +52,6 @@ function BuscarDestinos(valor) {
 			        tbody.innerHTML = ''; // Limpiar el contenido anterior (opcional)
 
 			        data.forEach(destinoCarrera => {
-						alert(destinoCarrera.id);
 			            // Crear una nueva fila para cada objeto de destinoCarrera
 			            const row = document.createElement('tr');
 			            row.id = `fila-${destinoCarrera.id}`; // Asegúrate de usar la propiedad correcta

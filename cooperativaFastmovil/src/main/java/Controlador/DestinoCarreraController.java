@@ -59,7 +59,6 @@ public class DestinoCarreraController extends HttpServlet {
         
         case "Buscar":
         	String filtro = request.getParameter("filtro");
-        	System.out.println("ingreso a buscar");
         	List<DestinoCarrera> destinoCarreras = dao.obtenerDestinoCarreraFiltro(filtro);
         	response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
