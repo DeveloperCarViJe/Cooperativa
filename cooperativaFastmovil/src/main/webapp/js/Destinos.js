@@ -10,6 +10,7 @@ function toggleSubMenu(subMenuId) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
+		//Este metodo de js, se utiliza para llamar a un evento. Cuando el boton o el jdp es creado mediante el DOM.
 		document.querySelector('tbody.text-center').addEventListener('click', function(event) {
 		    // Verifica si el elemento clicado tiene la clase .editarValorDestino
 		    if (event.target.closest('.editarValorDestino')) {
