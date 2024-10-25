@@ -138,7 +138,7 @@ body, html {
 
 .table th, .table td {
     padding: 10px 10px; /* Reduce el padding */
-    font-size: 15px; /* Ajusta el tamaño de la fuente */
+    font-size: 12px; /* Ajusta el tamaño de la fuente */
     font-family: "a r i a l", serif;
     text-transform: uppercase; /* Transforma el texto a mayúsculas */
 }

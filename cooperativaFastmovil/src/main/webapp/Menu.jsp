@@ -15,7 +15,7 @@
         <a href="${pageContext.request.contextPath}/ChoferesController">MOSTRAR <i class="fas fa-list ml-2"></i></a>
     </div>
     
-    <a href="${pageContext.request.contextPath}/Formularios/RegistroDetalleDestino.jsp">DESTINOS <i class="fas fa-map-marker-alt ml-2"></i></a>
+    <a href="${pageContext.request.contextPath}/Formularios/DetalleDestino.jsp">DESTINOS <i class="fas fa-map-marker-alt ml-2"></i></a>
     <a href="contact.jsp">CARRERAS</a>
     <a href="${pageContext.request.contextPath}/CerrarSesion" class="menu-item" class="btn btn-outline-danger">
     	<i class="fas fa-sign-out-alt"></i> Cerrar Sesión

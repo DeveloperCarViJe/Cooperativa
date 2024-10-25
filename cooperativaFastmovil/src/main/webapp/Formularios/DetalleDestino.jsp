@@ -75,13 +75,13 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                <c:forEach var="chofer" items="${choferes}">
-                    <tr id="fila-${chofer.id_chofer}">
-                    	<td id="movil-${chofer.id_chofer}">${chofer.movil}</td>
-                        <td id="nombres-${chofer.id_chofer}">${chofer.nombres}</td>
-		                <td id="apellidos-${chofer.id_chofer}">${chofer.apellidos}</td>
+                <c:forEach var="destinoCarrera" items="${DestinoCarrera}">
+                    <tr id="fila-${destinoCarrera.id}">
+                    	<td id="origen-${destinoCarrera.id}">${destinoCarrera.Origen}</td>
+                        <td id="destino-${destinoCarrera.id}">${destinoCarrera.Destino}</td>
+		                <td id="valor-${destinoCarrera.id}">${destinoCarrera.valor}</td>
 		                <td style="text-align: center;">
-							<a href="#" class="editarOrigenDestino" data-id="${chofer.id_chofer}" title="Editar">
+							<a href="#" class="editarValorDestino" data-id="${destinoCarrera.id}" title="Editar Valor">
 							   <i class="fas fa-edit fa-2x" style="margin-right: 10px; color: #5F9EA0;"></i>
 							</a>
 		                </td>

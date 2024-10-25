@@ -10,7 +10,16 @@ function toggleSubMenu(subMenuId) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-	setTimeout(function() {
+		document.querySelector('tbody.text-center').addEventListener('click', function(event) {
+		    // Verifica si el elemento clicado tiene la clase .editarValorDestino
+		    if (event.target.closest('.editarValorDestino')) {
+		        // Si es así, obtén el ID desde el atributo data-id
+		        const idDestino = event.target.closest('.editarValorDestino').getAttribute("data-id");
+		        editarFila(idDestino);
+		    }
+		});
+		
+		setTimeout(function() {
 	    const alertElement = document.getElementById('alertRegistroDestino');
 	    if (alertElement) {
 	        alertElement.querySelector('.alert').classList.remove('show');
@@ -25,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			BuscarDestinos(valorBuscado);            
 	    }
 	});
+	
 	
 });
 
@@ -62,7 +72,7 @@ function BuscarDestinos(valor) {
 			                <td id="destino-${destinoCarrera.id}">${destinoCarrera.Destino}</td>
 			                <td id="valor-${destinoCarrera.id}">${destinoCarrera.valor}</td>
 			                <td style="text-align: center; ">
-			                    <a href="#" class="editarOrigenDestino" data-id="${destinoCarrera.id}" title="Editar">
+			                    <a href="#" class="editarValorDestino" data-id="${destinoCarrera.id}" title="Editar Valor">
 			                        <i class="fas fa-edit fa-2x" style="margin-right: 10px; color: #5F9EA0;"></i>
 			                    </a>
 			                </td>
@@ -74,4 +84,11 @@ function BuscarDestinos(valor) {
 	        alert("Error: " + error.message);  // Mostrar el error en un alert
 	        console.error('Error:', error);
 	    });
+}
+
+function editarFila(idDestino) {
+    // Convertir las celdas a campos de texto
+    document.getElementById("valor-" + idDestino).innerHTML = `<input type="text" value="` + document.getElementById("valor-" + idDestino).innerText + `" />`;
+    // Cambiar el botón a "Guardar"
+    document.querySelector("#fila-" + idDestino + " td:last-child").innerHTML = `<button class="btn btn-success" style="background-color: #5F9EA0; border-color: #5F9EA0;" onclick="ActualizarValor(` + idDestino + `)">ACTUALIZAR</button>`;
 }
