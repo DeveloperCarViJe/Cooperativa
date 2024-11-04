@@ -10,32 +10,41 @@ function toggleSubMenu(subMenuId) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-		//Este metodo de js, se utiliza para llamar a un evento. Cuando el boton o el jdp es creado mediante el DOM.
-		document.querySelector('tbody.text-center').addEventListener('click', function(event) {
-		    // Verifica si el elemento clicado tiene la clase .editarValorDestino
-		    if (event.target.closest('.editarValorDestino')) {
-		        // Si es así, obtén el ID desde el atributo data-id
-		        const idDestino = event.target.closest('.editarValorDestino').getAttribute("data-id");
-		        editarFila(idDestino);
-		    }
-		});
-		
-		setTimeout(function() {
+		const tbody = document.querySelector('tbody.text-center');
+	    if (tbody) {
+	        tbody.addEventListener('click', function(event) {
+	            if (event.target.closest('.editarValorDestino')) {
+	                const idDestino = event.target.closest('.editarValorDestino').getAttribute("data-id");
+	                editarFila(idDestino);
+	            }
+	        });
+	    }
+	
+	const buscarDestinoElement = document.getElementById("buscarDestino");
+	if (buscarDestinoElement) {
+	    buscarDestinoElement.addEventListener("keydown", function(event) {
+	        if (event.key === "Enter" && buscarDestinoElement.value.trim() !== "") {
+	            const valorBuscado = event.target.value;
+	            BuscarDestinos(valorBuscado);            
+	        }
+	    });
+	}
+
+	// Verifica si el elemento "valor" existe antes de agregar el evento
+	const valorElement = document.getElementById("valor");
+	if (valorElement) {
+	    valorElement.addEventListener("input", function (e) {
+	        this.value = this.value.replace(/,/g, '');
+	    });
+	}
+	
+	setTimeout(function() {
 	    const alertElement = document.getElementById('alertRegistroDestino');
 	    if (alertElement) {
 	        alertElement.querySelector('.alert').classList.remove('show');
 	        alertElement.querySelector('.alert').classList.add('fade');
 	    }
 	}, 3000);
-	
-	document.getElementById("buscarDestino").addEventListener("keydown", function(event) {
-	    // Verificar si la tecla presionada es Enter (código de tecla 13)
-	    if (event.key === "Enter") {
-			const valorBuscado = event.target.value;
-			BuscarDestinos(valorBuscado);            
-	    }
-	});
-	
 	
 });
 
@@ -92,4 +101,36 @@ function editarFila(idDestino) {
     document.getElementById("valor-" + idDestino).innerHTML = `<input type="text" value="` + document.getElementById("valor-" + idDestino).innerText + `" />`;
     // Cambiar el botón a "Guardar"
     document.querySelector("#fila-" + idDestino + " td:last-child").innerHTML = `<button class="btn btn-success" style="background-color: #5F9EA0; border-color: #5F9EA0;" onclick="ActualizarValor(` + idDestino + `)">ACTUALIZAR</button>`;
+}
+
+function ActualizarValor(idDestino){
+	const valor = document.querySelector(`#valor-${idDestino} input`).value;
+	const params = new URLSearchParams();
+	params.append("accion", "Actualizar");
+	params.append("idDestino", idDestino);
+	params.append("valor", valor);
+	
+	fetch('/cooperativaFastmovil/DestinoCarreraController', {
+	    method: 'POST',
+	    headers: {
+	        'Content-Type': 'application/x-www-form-urlencoded',
+	    },
+	    body: params.toString()
+	})
+	.then(data => {
+		const celdaValor = document.getElementById(`valor-${idDestino}`);
+		            celdaValor.innerHTML = `<td id="valor-${idDestino}">${valor}</td>`;
+
+		            // Cambiar el ícono de guardar a edición
+		            const celdaBoton = document.querySelector(`#fila-${idDestino} td:last-child`);
+		            celdaBoton.innerHTML = `
+		                <a href="#" class="editarValorDestino" onclick="editarFila(${idDestino})" title="Editar Valor">
+		                    <i class="fas fa-edit fa-2x" style="margin-right: 10px; color: #5F9EA0;"></i>
+		                </a>
+		            `;
+	})
+	.catch(error => {
+	    alert("Error: " + error.message);  // Mostrar el error en un alert
+	    console.error('Error:', error);
+	});
 }

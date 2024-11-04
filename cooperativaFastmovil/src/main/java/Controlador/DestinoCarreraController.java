@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import DAO.DestinoCarreraDao;
 import modelo.Choferes;
 import modelo.DestinoCarrera;
+import modelo.Usuarios;
 
 /**
  * Servlet implementation class DestinoCarreraController
@@ -54,7 +55,7 @@ public class DestinoCarreraController extends HttpServlet {
         	DestinoCarrera destinoC = new DestinoCarrera(origen,destino,valor);
             boolean registroExitosoFalse = dao.insertarDestinoCarrera(destinoC);
             request.setAttribute("registroExitosoFalse", registroExitosoFalse);
-            request.getRequestDispatcher("Formularios/RegistroDetalleDestino.jsp").forward(request, response);
+            request.getRequestDispatcher("Formularios/DetalleDestino.jsp").forward(request, response);
             break;    
         
         case "Buscar":
@@ -66,7 +67,15 @@ public class DestinoCarreraController extends HttpServlet {
             String json = new Gson().toJson(destinoCarreras);
             response.getWriter().write(json);
             break;
-            
+        
+        case "Actualizar":
+        	int idDestinoActualizar = Integer.parseInt(request.getParameter("idDestino"));
+        	float valorA= Float.parseFloat(request.getParameter("valor"));
+        	DestinoCarrera destinoA = new DestinoCarrera(idDestinoActualizar,valorA);
+        	dao.actualizarDestino(destinoA);
+
+        	break;
+        	
         default:
             throw new AssertionError();
     }

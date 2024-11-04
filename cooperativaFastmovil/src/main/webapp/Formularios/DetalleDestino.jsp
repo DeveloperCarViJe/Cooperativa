@@ -54,7 +54,7 @@
                         <input type="text" class="form-control" id="valor" name="valor" maxlength="10" required>
                     </div>
                     <div class="col-sm-10 text-right">
-                        <button type="submit" class="btn btn-secondary btn-lg px-4 py-2" name="accion" value="Registrar">REGISTRAR DESTINO</button>
+                        <button type="submit" class="btn btn-secondary btn-lg px-4 py-2" name="accion" value="Registrar" required>REGISTRAR DESTINO</button>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
 		<div class="buscar-destino row justify-content-end">
 		    <label for="buscarDestino" class="col-form-label align-self-center mr-2">BUSCAR:</label>
 		    <div class="col-sm-3">
-		        <input type="text" class="form-control" id="buscarDestino" name="buscarDestino" maxlength="200" required>
+		        <input type="text" class="form-control" id="buscarDestino" name="buscarDestino" maxlength="200" placeholder="Ingrese para la busqueda">
 		    </div>
 		</div>
         <table class="table">

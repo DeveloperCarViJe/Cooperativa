@@ -78,8 +78,8 @@ public class UsuariosDao {
             if (usuarioExistente != null) {
                 usuarioExistente.setNombres(usuarios.getNombres().toUpperCase());
                 usuarioExistente.setApellidos(usuarios.getApellidos().toUpperCase());
-                usuarioExistente.setUsuario(usuarios.getUsuario().toUpperCase());
-                usuarioExistente.setPassword(usuarios.getPassword().toUpperCase());
+                usuarioExistente.setUsuario(usuarios.getUsuario());
+                usuarioExistente.setPassword(usuarios.getPassword());
                 usuarioExistente.setEmail(usuarios.getEmail().toUpperCase());
                 usuarioExistente.setTelefono(usuarios.getTelefono());
 

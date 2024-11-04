@@ -25,6 +25,10 @@ public class DestinoCarrera {
 		this.Destino = destino;
 		this.valor = valor;
 	}
+	public DestinoCarrera(Integer id, float valor) {
+		this.id = id;
+		this.valor = valor;
+	}
 	public Integer getId() {
 		return id;
 	}

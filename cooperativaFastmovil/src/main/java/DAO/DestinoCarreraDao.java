@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 
 import modelo.Choferes;
 import modelo.DestinoCarrera;
+import modelo.Usuarios;
 
 public class DestinoCarreraDao {
 	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
@@ -56,6 +57,32 @@ public class DestinoCarreraDao {
             }
         }
         return desiDestinoCarreras;
+    }
+    
+    public void actualizarDestino(DestinoCarrera destinoCarrera) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            // Verificar si el usuario existe antes de hacer un merge
+            DestinoCarrera destinoExistente = entityManager.find(DestinoCarrera.class, destinoCarrera.getId());
+            if (destinoExistente != null) {
+            	destinoExistente.setValor(destinoCarrera.getValor());
+
+                entityManager.merge(destinoExistente);  // Actualizar el usuario
+                transaction.commit();
+            }
+            
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
     }
     
     public static void closeEntityManagerFactory() {
